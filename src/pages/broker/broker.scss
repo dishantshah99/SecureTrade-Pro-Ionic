@@ -1,0 +1,22 @@
+page-broker {
+  th {
+    padding: 5px;
+    background-color: #ffffff;
+    color: white;
+    border: 1px solid black;
+    width: 50%;
+  }
+  td{
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+  }
+  table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px;
+    border-color: gray;
+    width: 100%;
+    border: 1px solid black;
+  }
+}

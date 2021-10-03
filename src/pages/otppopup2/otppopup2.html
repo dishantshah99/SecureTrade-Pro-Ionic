@@ -1,0 +1,21 @@
+<ion-content>
+    <ion-card style="width: 90%; position: fixed; z-index: 60;align-content: center;margin: 5%;margin-top: 40%; border-radius: 10px;">
+        <div style="padding: 20px;">
+            <ion-label style="text-align: center">Enter OTP</ion-label>
+
+            <ion-input placeholder="Enter otp here" style="margin-top: 10px;" type="number" #otp></ion-input>
+            <hr style="background:#ed3954">
+            <ion-label style="margin-top: 10px; text-align: center;" text-wrap (click)="launchDialer('9662015683')">IF Dont get OTP, please Do call on 9662015683</ion-label>
+
+            <ion-row style="margin-top: 20px;">
+                <ion-col col-6>
+                    <button ion-button class="register-btn" color="opposite" style="width: 100%; text-transform: none;" (click)="resend()">Resend</button>
+                </ion-col>
+                <ion-col col-6>
+                    <button ion-button class="register-btn" color="opposite" style="width: 100%; text-transform: none;" (click)="confirmbtn()">Confirm</button>
+                </ion-col>
+            </ion-row>
+        </div>
+    </ion-card>
+</ion-content>
+

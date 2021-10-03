@@ -1,0 +1,109 @@
+<!--
+  Generated template for the ProductlistPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>Search Symbol</ion-title>
+    </ion-navbar>
+
+    <ion-toolbar no-border-top no-padding style=" min-height: 30px !important;height: 30px;padding-bottom: 0 !important;">
+        <ion-segment [(ngModel)]="CASH">
+            <ion-segment-button value="CASH">
+                CASH
+            </ion-segment-button>
+            <ion-segment-button value="FUTURE">
+                FUTURE
+            </ion-segment-button>
+            <!--<ion-segment-button value="OPTION">-->
+            <!--OPTION-->
+            <!--</ion-segment-button>-->
+            <ion-segment-button value="MCX">
+                MCX
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-navbar [ngSwitch]="CASH">
+        <ion-searchbar *ngSwitchCase="'CASH'" placeholder="Search Symbol" (ionInput)="initializeItems1($event)" style="border-radius: 50px;" no-margin no-padding #search></ion-searchbar>
+        <ion-searchbar *ngSwitchCase="'FUTURE'" placeholder="Search Symbol" (ionInput)="initializeItems2($event)" style="border-radius: 50px;" no-margin no-padding #search></ion-searchbar>
+        <!--<ion-searchbar *ngSwitchCase="'OPTION'" placeholder="Search Symbol" (ionInput)="initializeItems3($event)" style="border-radius: 50px;" no-margin no-padding #search></ion-searchbar>-->
+        <ion-searchbar *ngSwitchCase="'MCX'" placeholder="Search Symbol" (ionInput)="initializeItems4($event)" style="border-radius: 50px;" no-margin no-padding #search></ion-searchbar>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+    <div [ngSwitch]="CASH" style="height: 100%;">
+        <div *ngSwitchCase="'CASH'">
+            <ion-list *ngFor="let i of CASHDATANEW" no-margin>
+                <ion-item no-lines no-border (click)="selectdata(i)">
+                    <div item-start>
+                        <h3 style="font-weight: bold;">{{i.SYMBOL}}</h3>
+                        <p style="color: #999999;font-size: 12px;">{{i.COMPANY}}</p>
+                    </div>
+                    <ion-checkbox *ngIf="type != 0" [checked]="i.IS_SELECTED" (click)="changedata(i.SYMBOL,i.TOKEN,i.SYMBOL_TYPE,i.IS_SELECTED)" [(ngModel)]="i.IS_SELECTED" item-end style="width: fit-content"></ion-checkbox>
+                </ion-item>
+                <hr no-margin no-padding>
+            </ion-list>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event,'cash')">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+        <div *ngSwitchCase="'FUTURE'">
+            <ion-list *ngFor="let j of FUTUREDATANEW">
+                <ion-item no-lines no-border (click)="selectdata(j)">
+                    <div item-start>
+                        <h3 style="font-weight: bold;">{{j.SYMBOL}}</h3>
+                        <p style="color: #999999;font-size: 12px;">{{j.COMPANY + " " + j.FUT_OPT_DATE_MONTH }}</p>
+                    </div>
+                    <ion-checkbox *ngIf="type != 0" [checked]="j.IS_SELECTED" (click)="changedata(j.SYMBOL,j.TOKEN,j.SYMBOL_TYPE,j.IS_SELECTED)" [(ngModel)]="j.IS_SELECTED" item-end style="width: fit-content"></ion-checkbox>
+                </ion-item>
+                <hr no-margin no-padding>
+            </ion-list>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event,'future')">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+        <!--<div *ngSwitchCase="'OPTION'">-->
+        <!--<ion-list *ngFor="let j of OPTIONDATANEW">-->
+        <!--<ion-item no-lines no-border (click)="selectdata(j)">-->
+        <!--<div item-start>-->
+        <!--<h3 style="font-weight: bold;">{{j.SYMBOL}}</h3>-->
+        <!--<p style="color: #999999;font-size: 12px;">{{j.COMPANY +" "+ j.FUT_OPT_DATE_MONTH +" "+ j.STRIKE + " "+ j.DISPLAY_OPTION_TYPE}}</p>-->
+        <!--</div>-->
+        <!--<ion-checkbox *ngIf="type != 0" [checked]="j.IS_SELECTED" (click)="changedata(j.SYMBOL,j.TOKEN,j.SYMBOL_TYPE,j.IS_SELECTED)" [(ngModel)]="j.IS_SELECTED" item-end style="width: fit-content"></ion-checkbox>-->
+        <!--</ion-item>-->
+        <!--<hr no-margin no-padding>-->
+        <!--</ion-list>-->
+
+        <!--<ion-infinite-scroll (ionInfinite)="doInfinite($event,'option')">-->
+        <!--<ion-infinite-scroll-content></ion-infinite-scroll-content>-->
+        <!--</ion-infinite-scroll>-->
+        <!--</div>-->
+        <div *ngSwitchCase="'MCX'">
+            <ion-list *ngFor="let j of MCXDATANEW">
+                <ion-item no-lines no-border (click)="selectdata(j)">
+                    <div item-start>
+                        <h3 style="font-weight: bold;">{{j.SYMBOL}}</h3>
+                        <p style="color: #999999;font-size: 12px;">{{j.COMPANY +" "+ j.FUT_OPT_DATE_MONTH}}</p>
+                    </div>
+                    <ion-checkbox *ngIf="type != 0" [checked]="j.IS_SELECTED" (click)="changedata(j.SYMBOL,j.TOKEN,j.SYMBOL_TYPE,j.IS_SELECTED)" [(ngModel)]="j.IS_SELECTED" item-end style="width: fit-content"></ion-checkbox>
+                </ion-item>
+                <hr no-margin no-padding>
+            </ion-list>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event,'mcx')">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+
+    </div>
+
+</ion-content>
+<ion-footer>
+    <button ion-button *ngIf="type != 0" full (click)="openalertpage()"> Save</button>
+</ion-footer>

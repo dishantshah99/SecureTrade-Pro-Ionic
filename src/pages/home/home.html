@@ -1,0 +1,672 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <button ion-button color="white" menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title >Securetrade Pro</ion-title>
+        <!--<ion-buttons end>
+            <button ion-button color="white" style="background-color: transparent" end (click)="openrssclick()">
+                <ion-icon name="logo-rss" style="font-size: 24px;"></ion-icon>
+            </button>
+        </ion-buttons>-->
+    </ion-navbar>
+
+    <ion-item style="background-color: #ed3954;height: 25px;" no-margin no-padding no-lines>
+        <ion-item no-padding style="background-color: transparent" (tap)="openwatchlist()">
+            <h2 style="color: white;margin: 15px;">{{DDL_NAME}}</h2>
+        </ion-item>
+        <div item-end no-margin no-padding>
+            <ion-icon name="md-arrow-dropdown" style="color: white;padding: 5px;margin: 5px" (tap)="openwatchlist()"></ion-icon>
+            <!--<ion-icon name="add" style="color: white;padding: 5px;margin: 5px" (tap)="openwatchlistclick()"></ion-icon>-->
+            <ion-icon name="create" style="color: white;padding: 5px;;margin: 5px" (tap)="openwatchlistclick()"></ion-icon>
+            <ion-icon name="funnel" style="color: white;padding: 5px;;margin: 5px" (tap)="presentActionSheet()"></ion-icon>
+            <ion-icon *ngIf="viewmode == true" name="grid" style="color: white;padding: 5px;;margin: 5px" (tap)="changeview()"></ion-icon>
+            <ion-icon *ngIf="viewmode == false" name="list-box" style="color: white;padding: 5px;;margin: 5px" (tap)="changeview()"></ion-icon>
+            <ion-icon *ngIf="deleteshow == false" name="md-trash" style="color: white;padding: 5px;;margin: 5px" (tap)="watchlistdeletedit()"></ion-icon>
+            <ion-badge *ngIf="deleteshow == true" (tap)="watchlistdeletedit()">cancel</ion-badge>
+        </div>
+    </ion-item>
+    <!--For Watchlist-->
+    <div style="position: absolute;z-index: 100;width: 100%" *ngIf="listshow == true">
+
+        <ion-list style="width: 65%;max-height: 295px;overflow: scroll;border: 1px solid #ed3954;border-radius: 5px">
+            <ion-item no-margin *ngFor="let i of DEFAULT let p=index" (click)="opendata(p,'DEFAULT')">
+                <p>{{i.NAME}}</p>
+                <!--<ion-icon name="md-trash" item-end="" small></ion-icon>-->
+            </ion-item>
+            <ion-item no-margin *ngFor="let i of PRIVATE let p=index">
+                <p (click)="opendata(p,'PRIVATE')">{{i.NAME}}</p>
+                <ion-icon name="md-trash" style="color: #f53d3d" item-end small (tap)="deletewatchlist(i.ID)"></ion-icon>
+            </ion-item>
+            <ion-item no-margin style="background-color: #939393" (tap)="showPrompt()">
+                <p style="color: black">Create New +</p>
+            </ion-item>
+        </ion-list>
+
+    </div>
+</ion-header>
+
+<ion-content >
+
+    <!--*ngIf="hidedetails == true;"-->
+    <!--<div style="height: 100%;width: 100%;position: absolute;z-index: 100" *ngIf="hidedetails == true || listshow == true">-->
+        <!--<ion-backdrop style="opacity: 0.35;" (tap)="commenclick()"></ion-backdrop>-->
+    <!--</div>-->
+    <div class="timeline-wrapper" *ngIf="showdata == false">
+        <!--<div class="animated-background">
+            <div class="background-masker header-top"></div>
+            <div class="background-masker header-left"></div>
+            <div class="background-masker header-right"></div>
+            <div class="background-masker header-bottom"></div>
+            <div class="background-masker subheader-left"></div>
+            <div class="background-masker subheader-right"></div>
+            <div class="background-masker subheader-bottom"></div>
+            <div class="background-masker content-top"></div>
+            <div class="background-masker content-first-end"></div>
+            <div class="background-masker content-second-line"></div>
+            <div class="background-masker content-second-end"></div>
+            <div class="background-masker content-third-line"></div>
+            <div class="background-masker content-third-end"></div>
+        </div>-->
+        <div class="timeline-item">
+            <ion-row>
+                <ion-col col-4 *ngFor="let i of [1,2,3,4,5,6,7,8,9,10,11,12]">
+                    <div class="animated-background"></div>
+                </ion-col>
+            </ion-row>
+        </div>
+    </div>
+
+    <div *ngIf="showdata == true">
+        <!--<ion-backdrop style="opacity: 0.35;" tappable="false" *ngIf="listshow == true" (tap)="commenclick()"></ion-backdrop>-->
+        <!--For popup-->
+
+
+        <ion-grid style="height: auto; position: absolute" *ngIf="viewmode == false">
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold" class="nse-txt" *ngIf="CASHDATA.length > 0">
+                NSE LIVE
+            </p>
+            <ion-row style="height: auto;">
+                <ion-col col-4 *ngFor="let i of CASHDATA let idx = index" (tap)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #19b330;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #f53d3d;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="background-color: transparent;width: fit-content;padding: 2px;;font-weight: bold;;font-size: 1.5rem;border-radius: 5px" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #222222;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold" class="nse-txt" *ngIf="FUTUREDATA.length > 0">
+                NSE FUTURE
+            </p>
+            <ion-row style="height: auto;">
+                <ion-col col-4 *ngFor="let i of FUTUREDATA let idx = index" (click)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 0px 4px 0px 4px;" no-margin >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.FUT_OPT_DATE_MONTH}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #19b330;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.FUT_OPT_DATE_MONTH}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #f53d3d;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.FUT_OPT_DATE_MONTH}}</p>
+                            <p style="background-color: transparent;width: fit-content;padding: 2px;;font-weight: bold;font-size: 1.5rem;border-radius: 5px" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #222222;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold" class="nse-txt" *ngIf="OPTIONDATA.length > 0">
+                NSE OPTION
+            </p>
+            <ion-row style="height: auto;">
+                <ion-col col-4 *ngFor="let i of OPTIONDATA let idx = index" (click)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 0px 4px 0px 4px;" no-margin >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.STRIKE +" "+ i.OPTION_TYPE + " " + i.FUT_OPT_DATE_MONTH}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #19b330;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.STRIKE +" "+ i.OPTION_TYPE + " " + i.FUT_OPT_DATE_MONTH}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #f53d3d;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.STRIKE +" "+ i.OPTION_TYPE + " " + i.FUT_OPT_DATE_MONTH}}</p>
+                            <p style="background-color: transparent;width: fit-content;padding: 2px;;font-weight: bold;font-size: 1.5rem;border-radius: 5px" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #222222;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold" class="nse-txt" *ngIf="MCXDATA.length > 0">
+                MCX
+            </p>
+            <ion-row style="height: auto;">
+                <ion-col col-4 *ngFor="let i of MCXDATA let idx = index" (click)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 0px 4px 0px 4px;" no-margin >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.FUT_OPT_DATE_MONTH}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #19b330;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.FUT_OPT_DATE_MONTH}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.5rem;border-radius: 5px;" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #f53d3d;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 0px 4px 0px 4px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <div align="center">
+                            <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>{{i.SYMBOL}}</p>
+                            <p style="color: #999999;font-size: 1.0rem;" no-margin>{{i.FUT_OPT_DATE_MONTH}}</p>
+                            <p style="background-color: transparent;width: fit-content;padding: 2px;;font-weight: bold;font-size: 1.5rem;border-radius: 5px" no-margin>{{i.CURRENT_RATE}}</p>
+                            <p style="color: #222222;font-size: 1.1rem" no-margin>{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}} %)</p>
+                        </div>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+            <div align="center" *ngIf="this.DDL_TYPE == 'PRIVATE'" style="margin: 5%;">
+                <ion-row style="height: auto;">
+                    <ion-col>
+                        <ion-card style="width: 100%; box-shadow: 0 2px 2px 0 #424242, 0 3px 1px 0px #424242, 0 0px 5px 0 #424242;padding: 0px 4px 0px 4px;" no-margin no-padding
+                                  (tap)="openoptionpage()">
+                            <div align="center">
+                                <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>
+                                    <ion-icon name="add" style="color: #222222;padding: 0px 4px;margin: 6px 0px 4px 0px;"></ion-icon>
+                                    Add
+                                    <ion-icon name="add" style="color: #222222;padding: 0px 4px;margin: 6px 0px 4px 0px;"></ion-icon>
+                                </p>
+                                <p class="" style="width: fit-content;padding: 0px 2px;font-weight: bold;font-size: 1.3rem;border-radius: 5px;" no-margin>NSE</p>
+                                <p style="font-weight: bold;font-size: 1.3rem;" no-margin>Option</p>
+                            </div>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+
+            </div>
+
+        </ion-grid>
+
+        <div *ngIf="viewmode == true">
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold;height: fit-content" class="nse-txt" *ngIf="CASHDATA.length > 0">
+                NSE LIVE
+            </p>
+            <ion-row *ngFor="let i of CASHDATA">
+                <ion-col col-12 style="height: fit-content" (click)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 2px;" no-margin >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.4rem;border-radius: 5px;">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #19b330;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 2px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.4rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #f53d3d;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 2px;" no-margin no-padding >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p style="background-color: transparent;width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.4rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold;height: fit-content" class="nse-txt" *ngIf="FUTUREDATA.length > 0">
+                NSE FUTURE
+            </p>
+            <ion-row *ngFor="let i of FUTUREDATA">
+                <ion-col col-12 style="height: fit-content" (click)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 2px;" no-margin >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.4rem;border-radius: 5px;">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #19b330;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span><span style="margin-left: 25px;">L:{{i.LOW_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 2px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.4rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #f53d3d;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span><span style="margin-left: 25px;">L:{{i.LOW_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 4px;" no-margin no-padding >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p style="background-color: transparent;width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.3rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.3rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span><span style="margin-left: 25px;">L:{{i.LOW_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold;height: fit-content" class="nse-txt" *ngIf="OPTIONDATA.length > 0">
+                NSE OPTION
+            </p>
+            <ion-row *ngFor="let i of OPTIONDATA">
+                <ion-col col-12 style="height: fit-content" (click)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 2px;" no-margin >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.4rem;border-radius: 5px;">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #19b330;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span><span style="margin-left: 25px;">L:{{i.LOW_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 2px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.4rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #f53d3d;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span><span style="margin-left: 25px;">L:{{i.LOW_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 4px;" no-margin no-padding >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p style="background-color: transparent;width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.3rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.3rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span><span style="margin-left: 25px;">L:{{i.LOW_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+            <p style="padding: 5px;margin-left: 5px;font-weight: bold;height: fit-content" class="nse-txt" *ngIf="MCXDATA.length > 0">
+                MCX
+            </p>
+            <ion-row *ngFor="let i of MCXDATA">
+                <ion-col col-12 style="height: fit-content" (click)="changeview2(i)">
+                    <ion-card *ngIf="i.DIFF_RATE>0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 2px;" no-margin >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.4rem;border-radius: 5px;">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #19b330;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                                <!--<p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span><span style="margin-left: 25px;">L:{{i.LOW_RATE}}</span></p>-->
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                    <ion-card *ngIf="i.DIFF_RATE<0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 2px;" no-margin no-padding
+                              >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.4rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #f53d3d;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+
+                    <ion-card *ngIf="i.DIFF_RATE==0" style="width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 4px;" no-margin no-padding >
+                        <div align="end" style="font-size: 1.3em;margin-top: 1px;" *ngIf="deleteshow == true">
+                            <ion-icon name="ios-close-circle-outline" style="font-weight: bold;"></ion-icon>
+                        </div>
+                        <ion-item>
+                            <div item-start>
+                                <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                                <p style="background-color: transparent;width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.3rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                            </div>
+                            <div item-end align="end">
+                                <br>
+                                <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.3rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                                <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                            </div>
+                        </ion-item>
+                    </ion-card>
+                </ion-col>
+            </ion-row>
+
+            <div align="center" *ngIf="this.DDL_TYPE == 'PRIVATE'" style="margin: 5%;">
+                <ion-row style="height: auto;">
+                    <ion-col>
+                        <ion-card style="width: 100%; box-shadow: 0 2px 2px 0 #424242, 0 3px 1px 0px #424242, 0 0px 5px 0 #424242;padding: 0px 4px 0px 4px;" no-margin no-padding
+                                  (tap)="openoptionpage()">
+                            <div align="center">
+                                <p style="color: #222222;font-size: 1.1rem;font-weight: 500" no-margin>
+                                    <ion-icon name="add" style="color: #222222;padding: 0px 4px;margin: 6px 0px 4px 0px;"></ion-icon>
+                                    Add
+                                    <ion-icon name="add" style="color: #222222;padding: 0px 4px;margin: 6px 0px 4px 0px;"></ion-icon>
+                                </p>
+                                <p class="" style="width: fit-content;padding: 0px 2px;font-weight: bold;font-size: 1.3rem;border-radius: 5px;" no-margin>NSE</p>
+                                <p style="font-weight: bold;font-size: 1.3rem;" no-margin>Option</p>
+                            </div>
+                        </ion-card>
+                    </ion-col>
+                </ion-row>
+
+            </div>
+
+        </div>
+    </div>
+
+</ion-content>
+<ion-footer>
+    <div *ngIf="hidedetails == true" (click)="hidedetailshow()">
+        <ion-row *ngIf="SELECTEDCASHDATA.length">
+            <ion-col col-12 style="height: fit-content;width: 100%;" *ngFor="let i of SELECTEDCASHDATA let idx = index">
+                <ion-card *ngIf="i.DIFF_RATE>0" style="margin-bottom: 10px;border-radius: 15px; width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.9), 0 3px 1px 0px rgba(46,125,50,0.8), 0 0px 5px 0 rgba(46,125,50,0.7);padding: 5px;"
+                          no-margin >
+                    <ion-item>
+                        <div item-start>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;font-size: 1.4rem;border-radius: 5px;">{{i.CURRENT_RATE}}</p>
+                            <p style="color: #19b330;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                        </div>
+                        <div item-end align="end">
+                            <br>
+                            <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-right: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                            <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                            <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                        </div>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">BID Price</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.BID}}({{i.BIDQTY}})</p>
+                        </ion-col>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Ask Price</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.ASK}}({{i.ASKQTY}})</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Volume</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.VOLUME}}</p>
+                        </ion-col>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Open Interest</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.OI}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+                <ion-card *ngIf="i.DIFF_RATE<0"
+                          style="margin-bottom: 10px;border-radius: 15px;width: 100%; box-shadow: 0 2px 2px 0 rgba(196, 23, 23, 0.14), 0 3px 1px 0px rgba(227, 16, 16, 0.2), 0 0px 5px 0 rgba(245, 12, 12, 0.12);padding: 5px;"
+                          no-margin no-padding
+                          >
+                    <ion-item>
+                        <div item-start>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                            <p class="{{i.CHANGED_COLOR}}" style="width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.4rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                            <p style="color: #f53d3d;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                        </div>
+                        <div item-end align="end">
+                            <br>
+                            <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                            <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                            <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                        </div>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">BID Price</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.BID}}({{i.BIDQTY}})</p>
+                        </ion-col>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Ask Price</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.ASK}}({{i.ASKQTY}})</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Volume</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.VOLUME}}</p>
+                        </ion-col>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Open Interest</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.OI}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+                <ion-card *ngIf="i.DIFF_RATE==0"
+                          style="margin-bottom: 10px;border-radius: 15px;width: 100%; box-shadow: 0 2px 2px 0 rgba(46,125,50,0.14), 0 3px 1px 0px rgba(46,125,50,0.2), 0 0px 5px 0 rgba(46,125,50,0.12);padding: 5px;" no-margin
+                          no-padding >
+                    <ion-item>
+                        <div item-start>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.SYMBOL}}</p>
+                            <p style="background-color: transparent;width: fit-content;padding: 2px;font-weight: bold;;font-size: 1.4rem;border-radius: 5px">{{i.CURRENT_RATE}}</p>
+                            <p style="color: #222222;font-size: 1.4rem;padding: 2px;">{{i.DIFF_RATE}} ({{i.DIFF_RATE_PER}})</p>
+                        </div>
+                        <div item-end align="end">
+                            <br>
+                            <!--<p style="color:#000;padding: 2px;font-weight: bold;font-size: 1.4rem;">{{i.CURRENT_RATE}}<span style="margin-left: 25px;">|</span> <span style="margin-left: 25px;"> {{i.CLOSE_RATE}}</span></p>-->
+                            <p style="color: #222222;font-size: 1.4rem;padding: 2px;">O:{{i.OPENING_RATE}}<span style="margin-left: 25px;">H:{{i.HIGH_RATE}}</span></p>
+                            <p style="color: #222222;font-size: 1.4rem;padding: 2px;">L:{{i.LOW_RATE}}<span style="margin-left: 25px;">C:{{i.CLOSE_RATE}}</span></p>
+                        </div>
+                    </ion-item>
+                    <ion-row>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">BID Price</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.BID}}({{i.BIDQTY}})</p>
+                        </ion-col>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Ask Price</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.ASK}}({{i.ASKQTY}})</p>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Volume</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.VOLUME}}</p>
+                        </ion-col>
+                        <ion-col align="center">
+                            <p style="color: #999999;font-size: 1.2rem;padding: 2px;">Open Interest</p>
+                            <p style="color: #222222;font-size: 1.4rem;font-weight: 500;padding: 2px;">{{i.OI}}</p>
+                        </ion-col>
+                    </ion-row>
+                </ion-card>
+            </ion-col>
+
+        </ion-row>
+    </div>
+</ion-footer>

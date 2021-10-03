@@ -1,0 +1,44 @@
+page-fundamental-calls {
+
+  .card {
+    margin: 5px;
+    border-radius: 2px;
+    width: calc(100% - 12px);
+    -webkit-box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+  }
+  .scroll-content {
+    background-image: none;
+  }
+  .sell-button {
+    margin: auto;
+    padding: auto;
+    width: 55px;
+    height: 22px;
+    font-size: 12px;
+    border-radius: 4px;
+    text-transform: none;
+  }
+
+
+  .label {
+     margin: 0px 0px 0px 0;
+  }
+
+  .list {
+    margin: 2px 0 14px;
+  }
+
+  .item {
+    padding-left: 0px;
+  }
+
+  .item-inner {
+    padding-right: 0px !important;
+  }
+
+  .title-md {
+    display: inline-block;
+  }
+}

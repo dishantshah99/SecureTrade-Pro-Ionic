@@ -1,0 +1,25 @@
+page-optionselect {
+  .scroll-content {
+    //padding-bottom: 0 !important;
+    background: white!important;
+  }
+
+  .toolbar {
+    //min-height: 30px !important;
+    //height: 30px;
+    //padding-bottom: 0 !important;
+  }
+
+  .segment-button {
+    background-color: color($colors, "primary") !important;
+    border-color: color($colors, "light") !important;
+    color: color($colors, "light") !important;
+    //border-bottom-width: 4px !important;
+  }
+  .segment-button.segment-activated {
+    color: color($colors, "primary") !important;
+    background-color: color($colors, "light") !important;
+    border-color: color($colors, "light") !important;
+    border-left-width: 1px !important;
+  }
+}

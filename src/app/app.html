@@ -1,0 +1,49 @@
+<!--
+<ion-menu [content]="content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Menu</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content>
+    <ion-list>
+      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        {{p.title}}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+&lt;!&ndash; Disable swipe-to-go-back because it's poor UX to combine STGB with side menus &ndash;&gt;
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>-->
+
+<!--*ngIf="api.isLogin"-->
+<ion-menu [content]="content" *ngIf="api.isLogin == true">
+    <ion-header>
+        <ion-navbar color="primary">
+            <ion-item (click)="openprofile()" style="background-color: #ed3954" no-lines no-border menuClose>
+                <img item-start style="height: 50px; width: 50px; margin-left: auto; margin-right: auto; border-radius: 50%" [src]="api.profileimage ||'assets/imgs/user.png'"/>
+                <div style="margin-left: 20px;">
+                    <h2 style="margin-top: 10px;color:white;">{{api.title}}</h2>
+                    <h3 style="margin-top: 8px;color:white;">{{api.Mobile}}</h3>
+                </div>
+            </ion-item>
+
+        </ion-navbar>
+    </ion-header>
+
+    <ion-content>
+        <ion-list>
+            <button style="padding-left: 10px" menuClose ion-item *ngFor="let p of api.pages" (click)="openPage(p)">
+                <ion-icon [name]="p.icon" item-left style="color: #ed3954;width: 40px; text-align: center;" large no-margin></ion-icon>
+                <p style="font-size: 16px;font-weight: bold"> {{p.title}}</p>
+            </button>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

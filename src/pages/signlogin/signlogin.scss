@@ -1,0 +1,45 @@
+page-signlogin {
+
+ .scroll-content{
+   background-image: url("../assets/imgs/splash_screen_bg.png") !important;
+   background-repeat: no-repeat;
+   background-size: cover;
+ }
+
+  .button-full.button-outline {
+    border-radius: 4px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-color: #ffffff;
+
+  }
+
+  .bg{
+
+    border-radius: 4px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-color: #ffffff;
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+
+  .header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0);
+  }
+
+  .toolbar-background-ios {
+    background: #fff;
+  }
+
+  .toolbar-background-md {
+    background: #fff;
+  }
+  .scroll-content {
+    overflow: hidden !important;
+  }
+  
+
+}

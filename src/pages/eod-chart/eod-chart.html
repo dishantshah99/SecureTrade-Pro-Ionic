@@ -1,0 +1,75 @@
+<!--
+  Generated template for the EodChartPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>EOD Chart</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content class="outer-content">
+  <ion-card class="ion-cards" (click)="EodchartSelected(1)">
+    <ion-item >
+      <!--<ion-icon name="date"></ion-icon>-->
+      <!--<fa-icon style="color: #757575;font-size: 26px;" class="fa-icons icons-side" [name]="p.icon" item-left small></fa-icon>-->
+      <img src="assets/imgs/bar_chart.png" style="background-color: #0bca00" class="fa-icons" item-start>
+      <!--<fa-icon color="primary" name="bar-chart" class="fa-icons" style="background-color: #0bca00" item-start></fa-icon>-->
+      <h4 style="font-weight: bold; color:#ed3954 ">NSE CASH EOD Signal</h4>
+      <p>Refresh Every Day</p>
+      <!--<fa-icon class="fa-icons"  item-right primary name="rupee"></fa-icon><label item-right>100</label>-->
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="ion-cards" (click)="EodchartSelected(2)">
+    <ion-item>
+      <!--<ion-icon name="date"></ion-icon>-->
+      <!--<fa-icon color="primary" name="line-chart" class="fa-icons" style="background-color: #ca3757;" item-start></fa-icon>-->
+      <img src="assets/imgs/line_chart.png" style="background-color: #ca3757" class="fa-icons" item-start>
+      <h4 style="font-weight: bold; color:#ed3954 ">NSE FO EOD Signal</h4>
+      <p>Refresh Every Day</p>
+      <!--<fa-icon class="fa-icons"  item-right primary name="rupee"></fa-icon><label item-right>100</label>-->
+    </ion-item>
+  </ion-card>
+
+  <ion-card class="ion-cards" (click)="EodchartSelected(3)">
+
+    <ion-item>
+      <!--<ion-icon name="date"></ion-icon>-->
+      <img src="assets/imgs/eod_chart_icon.png" style="background-color: #ed3954" class="fa-icons" item-start>
+      <!--<fa-icon color="primary" name="signal" class="fa-icons" style="background-color: #ed3954" item-start></fa-icon>-->
+      <h4 style="font-weight: bold; color:#ed3954 ">MCX EOD Signal</h4>
+      <p>Refresh Every Day</p>
+      <!--<fa-icon class="fa-icons"  item-right primary name="rupee"></fa-icon><label item-right>100</label>-->
+    </ion-item>
+  </ion-card>
+  <!--<ion-list>-->
+
+    <!--<button ion-item (click)="EodchartSelected(1)">-->
+      <!--<ion-label color="primary">-->
+        <!--<ion-icon color="primary" name="md-trending-up" class="live-icon" style="background-color: #0bca00"  item-start></ion-icon>-->
+        <!--NSC Cash EOD Signal-->
+      <!--</ion-label>-->
+    <!--</button>-->
+
+    <!--<button ion-item (click)="EodchartSelected(2)">-->
+      <!--<ion-label color="primary">-->
+        <!--<ion-icon color="primary" name="md-stats" class="live-icon" style="background-color: #ca3757;padding-left: 13px;padding-right: 13px;" item-start></ion-icon>-->
+        <!--NSC FO EOD Signal-->
+      <!--</ion-label>-->
+    <!--</button>-->
+
+    <!--<button ion-item (click)="EodchartSelected(3)">-->
+      <!--<ion-label color="primary">-->
+        <!--<ion-icon color="primary" name="md-podium" class="live-icon" style="background-color: #ed3954" item-start></ion-icon>-->
+        <!--MCX EOD Signal-->
+      <!--</ion-label>-->
+    <!--</button>-->
+
+  <!--</ion-list>-->
+
+</ion-content>

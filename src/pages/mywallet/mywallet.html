@@ -1,0 +1,93 @@
+<!--
+  Generated template for the MywalletPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>My Wallet</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="login-content">
+
+    <div class="ion-row">
+
+        <ion-row>
+
+            <ion-col>
+
+                <ion-label class="lable lable-style">Your Current Balance is :</ion-label>
+
+                <ion-item class="ion-item">
+
+                    <img src="assets/imgs/rupee_icon.png" class="fa-icons" item-left/>
+
+                    <!--<fa-icon class="fa-icons" name="rupee" item-left medium></fa-icon>-->
+                    <ion-label class="lable lable-style" style="margin-top: 7px">{{amount}}</ion-label>
+                    <!--<ion-input type="text" value="{{amount}}" disabled></ion-input>-->
+
+                </ion-item>
+
+                <ion-label class="lable lable-style">Your Ref. Code is :</ion-label>
+
+                <ion-item class="ion-item">
+
+                    <!--<ion-icon name="leaf" item-left primary></ion-icon>-->
+
+                    <img src="assets/imgs/ref_code_icon.png" class="fa-icons" item-left/>
+
+                    <!--<fa-icon class="fa-icons" name="code" item-left primary></fa-icon>-->
+
+                    <ion-label style="width: 100%; color: #ed3954 ; font-weight: bold;" text-wrap>{{REFERRER_USER}}</ion-label>
+                    <!--<ion-input type="text"  value="{{REFERRER_USER}}" disabled></ion-input>-->
+                    <!--<fa-icon class="fa-icons" item-right primary name="share-alt" (click)="shareInfo()"></fa-icon>-->
+
+                    <img src="assets/imgs/share_icon.png"  class="fa-icons" (click)="shareInfo()" item-right/>
+
+                </ion-item>
+
+            </ion-col>
+
+            <ion-col>
+
+                <button ion-button class="login-button login" (click)="gotoSubscribe()">Subscribe Now</button>
+
+            </ion-col>
+        </ion-row>
+
+    </div>
+
+    <div>
+        <ion-card class="ion-cards" *ngFor="let item of items">
+            <ion-item style="margin-bottom: 0px">
+                <!--<ion-icon name="date"></ion-icon>-->
+                <img src="assets/imgs/user_icon.png" item-left  style="margin: 0px 4px 13px 0;"class="fa-icons"/>
+
+                <!--<fa-icon class="fa-icons fa-icons" style="margin: 0px 4px 13px 0;" name="user" item-left medium></fa-icon>-->
+
+                <h4 style="font-weight: bold; color:#ed3954 ">New register</h4>
+
+                <p>Type :
+
+                    <small> New Register</small>
+
+                </p>
+
+                <img src="assets/imgs/rupee_icon.png" class="fa-icons" item-right/>
+
+                <!--<fa-icon class="fa-icons" item-right primary name="rupee"></fa-icon>-->
+
+                <label item-right style="margin: 0px;color: #666;">Amount : {{item.AMOUNT}}</label>
+
+            </ion-item>
+
+        </ion-card>
+
+    </div>
+
+</ion-content>

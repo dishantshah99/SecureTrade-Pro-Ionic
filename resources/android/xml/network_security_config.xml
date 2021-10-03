@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain>173.212.239.224</domain>
+        <domain>5.189.165.127</domain>
+        <domain>5.189.181.36</domain>
+        <domain>5.189.191.174</domain>
+        <domain>62.171.138.53</domain>
+        <domain>95.111.236.209</domain>
+        <domain>207.180.237.2</domain>
+        <domain>173.249.53.164</domain>
+        <domain>192.168.1.3</domain>
+
+        <domain includeSubdomains="true">moneycontrol.com</domain>
+        <domain includeSubdomains="true">investmentguruindia.com</domain>
+        <domain includeSubdomains="true">moneycontrol.co.in</domain>
+    </domain-config>
+</network-security-config>

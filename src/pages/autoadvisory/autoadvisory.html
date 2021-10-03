@@ -1,0 +1,183 @@
+<!--
+  Generated template for the AutoadvisoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Auto Advisory</ion-title>
+
+        <span style="float: right; color: white" end><ion-icon class="abc" name="md-settings" style="margin-left: 12px;margin-right: 16px;margin-top: 4px;font-weight: bold; font-size: 22px;" (click)="seting()"></ion-icon></span>
+
+        <span style="float: right; color: white" end><ion-icon name="md-share" style="margin-left: 17px;margin-right: 17px;margin-top: 4px; font-weight: bold; font-size: 22px;" (click)="shareScreenshot()"></ion-icon></span>
+
+    </ion-navbar>
+
+    <ion-item style="background-color: #ed3954;height: 25px;" no-margin no-padding no-lines>
+        <ion-item no-padding style="background-color: transparent" (tap)="openwatchlist()">
+            <h2 style="color: white;margin: 15px;">{{DDL_NAME}}</h2>
+        </ion-item>
+        <div item-end no-margin no-padding>
+            <ion-icon name="md-arrow-dropdown" style="color: white;padding: 5px;margin: 5px" (tap)="openwatchlist()"></ion-icon>
+            <ion-icon name="create" style="color: white;padding: 5px;;margin: 5px" (tap)="openwatchlistclick()"></ion-icon>
+            <!--<img *ngIf="filter == false" src="assets/imgs/filterani.gif" style="height: 35px;width: 35px;background-color: white;border-radius: 50px" (tap)="openfilter()">-->
+            <ion-icon *ngIf="filter == false" name="ios-funnel" class="bg-green" style="color: white;padding: 5px;;margin: 5px;border-radius: 15px;" (tap)="openfilter()"></ion-icon>
+            <ion-icon *ngIf="filter == true" name="md-arrow-dropup-circle" class="bg-green" style="color: white;padding: 5px;;margin: 5px" (tap)="openfilter()"></ion-icon>
+        </div>
+    </ion-item>
+    <ion-list style="position: absolute;z-index: 100;min-width: 80%;margin-left: 5px" *ngIf="listshow == true">
+        <!--<ion-item no-margin *ngFor="let i of DEFAULT let p=index" (tap)="opendata(p,'DEFAULT')">-->
+        <!--<p *ngIf="i.NAME">{{i.NAME}}</p>-->
+        <!--&lt;!&ndash;<ion-icon name="md-trash" item-end="" small></ion-icon>&ndash;&gt;-->
+        <!--</ion-item>-->
+        <ion-item no-margin *ngFor="let i of PRIVATE let p=index">
+            <p (tap)="opendata(p,'PRIVATE')">{{i.NAME}}</p>
+            <ion-icon name="md-trash" style="color: #f53d3d" item-end small (tap)="deletewatchlist(i.ID)"></ion-icon>
+        </ion-item>
+        <ion-item no-margin style="background-color: #939393" (tap)="showPrompt()">
+            <p style="color: black">Create New +</p>
+        </ion-item>
+    </ion-list>
+    <div *ngIf="PRIVATE.length > 0 && filter == true" style="position: absolute;z-index: 100;background: white;border: 3px solid #ed3954;width: 100%">
+        <ion-label style="margin: 5px;padding: 5px;">Trader Type</ion-label>
+        <ion-row style="border-bottom:1px solid #ddd;background: white;margin-left: 5px">
+            <ion-col align="center">
+                <ion-badge class="vehicle" (tap)="changetrade(1,5)" [ngClass]="{'active': traderid == 1}">Intraday</ion-badge>
+            </ion-col>
+
+            <ion-col align="center">
+                <ion-badge class="vehicle" (tap)="changetrade(2,15)" [ngClass]="{'active': traderid == 2}">BTST</ion-badge>
+            </ion-col>
+
+            <ion-col align="center">
+                <ion-badge class="vehicle" (tap)="changetrade(3,60)" [ngClass]="{'active': traderid == 3}">Position</ion-badge>
+            </ion-col>
+        </ion-row>
+        <ion-label style="margin: 5px;padding: 5px;">Trade Type</ion-label>
+        <ion-row style="height: fit-content;background: white;">
+            <ion-col align="center" *ngFor="let i of Traderarray let idx = index">
+                <ion-badge class="vehicle" (tap)="changetrader(idx)" [ngClass]="{'active': i.select == true}">{{i.title}}</ion-badge>
+            </ion-col>
+        </ion-row>
+
+        <div align="end">
+            <button ion-button style="height: 27px;margin: 10px;border-radius: 5px;" (click)="updatedata()">Update</button>
+        </div>
+    </div>
+
+    <ion-row style="border-bottom:1px solid #ddd;background: white;" *ngIf="PRIVATE.length > 0">
+        <ion-col align="center">
+            <ion-badge class="vehicle" (tap)="changecall(1)" [ngClass]="{'active': callid == 1}">Active</ion-badge>
+        </ion-col>
+
+        <ion-col align="center">
+            <ion-badge class="vehicle" (tap)="changecall(2)" [ngClass]="{'active': callid == 2}">Close</ion-badge>
+        </ion-col>
+    </ion-row>
+    <ion-item no-lines no-margin>
+        <ion-searchbar style="padding: 0px;" (ionInput)="getItems($event)" [(ngModel)]="searchtxt"></ion-searchbar>
+    </ion-item>
+</ion-header>
+
+
+<ion-content>
+
+    <!--AUTO ADVISORY-->
+
+    <ion-list style="margin-top: 15%" *ngIf="PRIVATE.length > 0" (tap)="commenclick()">
+        <div>
+            <ion-list *ngFor="let i of DATALIST">
+                <!--(tap)="openlivechart()"-->
+                <ion-card style="margin: 10px;box-shadow:rgba(46, 125, 50, 0.5) 0px 0px 2px 6px, rgba(46, 125, 50, 0.2) 0px 22px 15px 4px, rgba(48, 125, 50, 0.2) 5px 5px 5px 5px" *ngIf="i.BUY_SELL != 'Sell'" (click)="chartSelected('LIVE',10,i)">
+                    <h4 style="color: #040063;font-size: 1.8rem;padding: 5px;">{{i.SYMBOL}}<span style="font-size: 13px;padding: 10px;font-weight: bold">{{i.TRADE_TYPE}}</span>
+                        <span style="float: right;">
+                                    <button ion-button small color="danger" class="sell-button" *ngIf="i.BUY_SELL !='Buy'">{{i.BUY_SELL}}</button>
+
+                                    <button ion-button small color="secondary" *ngIf="i.BUY_SELL=='Buy'" class="sell-button">{{i.BUY_SELL}}</button>
+
+                                    </span>
+                    </h4>
+                    <!--<h4 style="color: #040063;font-size: 1.5rem;padding: 5px;">{{i.SYMBOL}}</h4>-->
+                    <ion-row>
+                        <ion-col col-4>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Init. Price</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Target 1</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Target 2</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Target 3</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Stop Loss</p>
+                        </ion-col>
+                        <ion-col col-8 style="padding: 0px;">
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;">{{i.INIT}}</p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TGT1_HIT == 'None' || i.TGT1_HIT == ''">{{i.TGT1 || ''}}</p>
+                            <p style="font-size: 12px;" *ngIf="i.TGT1_HIT == 'Hit'"><span
+                                    style="color: #040063;padding: 0px;border-radius: 4px;width: fit-content; background-color: #19b330;color: #040063;">{{i.TGT1 || ''}}</span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 0px;margin-left: 15px;">{{i.TGT1_DATETIME}}</span></p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TGT2_HIT == 'None' || i.TGT2_HIT == ''">{{i.TGT2 || ''}}</p>
+                            <p style="font-size: 12px;" *ngIf="i.TGT2_HIT == 'Hit'"><span
+                                    style="color: #040063;padding: 0px;border-radius: 4px;width: fit-content; background-color: #19b330;color: #040063;">{{i.TGT2 || ''}} </span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 0px;margin-left: 15px;">{{i.TGT2_DATETIME}}</span></p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TGT3_HIT == 'None' || i.TGT3_HIT == ''">{{i.TGT3 || ''}}</p>
+                            <p style="font-size: 12px;" *ngIf="i.TGT3_HIT == 'Hit'"><span
+                                    style="color: #040063;padding: 0px;border-radius: 4px;width: fit-content; background-color: #19b330;color: #040063;">{{i.TGT3 || ''}} </span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 5px;margin-left: 15px;">{{i.TGT3_DATETIME}}</span></p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TSL_HIT == 'None' || i.TSL_HIT == ''">{{i.TSL || ''}}</p>
+                            <p style="font-size: 12px;" *ngIf="i.TSL_HIT == 'Hit'"><span style="color: #ffffff;padding: 0px;border-radius: 4px;width: fit-content; background-color: #f53d3d;">{{i.TSL || ''}} </span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 0px;margin-left: 15px;">{{i.TSL_DATETIME}}</span></p>
+                        </ion-col>
+                    </ion-row>
+                    <div align="end">
+                        <p style="color: #8b8b8b;padding: 3px;font-size: 12px;">{{i.INIT_DATETIME}}</p>
+                    </div>
+                </ion-card>
+
+                <ion-card style="margin: 10px;box-shadow:rgba(244,67,54,0.5) 0px 0px 2px 6px, rgba(244,67,54,0.2) 0px 22px 15px 4px, rgba(244,67,54,0.2) 5px 5px 5px 5px" *ngIf="i.BUY_SELL == 'Sell'" (click)="chartSelected('LIVE',10,i)">
+                    <h4 style="color: #040063;font-size: 1.8rem;padding: 5px;">{{i.SYMBOL}}<span style="font-size: 13px;padding: 10px;font-weight: bold">{{i.TRADE_TYPE}}</span>
+                        <span style="float: right;">
+                                    <button ion-button small color="danger" class="sell-button" *ngIf="i.BUY_SELL !='Buy'">{{i.BUY_SELL}}</button>
+
+                                    <button ion-button small color="secondary" *ngIf="i.BUY_SELL=='Buy'" class="sell-button">{{i.BUY_SELL}}</button>
+
+                                    </span>
+                    </h4>
+                    <!--<h4 style="color: #040063;font-size: 1.5rem;padding: 5px;">{{i.SYMBOL}}</h4>-->
+                    <ion-row>
+                        <ion-col col-4>
+                            <p style="color: #040063;width: fit-content;font-size: 12px;margin: 0px;padding: 0px;">Init. Price</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Target 1</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Target 2</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Target 3</p>
+                            <p style="color: #040063;width: fit-content;padding: 0px;font-size: 12px;margin: 0px;">Stop Loss</p>
+                        </ion-col>
+                        <ion-col col-8 style="padding: 0px;">
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;">{{i.INIT}}</p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TGT1_HIT == 'None' || i.TGT1_HIT == ''">{{i.TGT1 || ''}}</p>
+                            <p style="font-size: 12px; " *ngIf="i.TGT1_HIT == 'Hit'"><span
+                                    style="color: #040063;padding: 0px;border-radius: 4px;width: fit-content; background-color: #19b330;color: #040063;">{{i.TGT1 || ''}}</span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 0px;margin-left: 15px;">{{i.TGT1_DATETIME}}</span></p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TGT2_HIT == 'None' || i.TGT2_HIT == ''">{{i.TGT2 || ''}}</p>
+                            <p style="font-size: 12px;" *ngIf="i.TGT2_HIT == 'Hit'"><span
+                                    style="color: #040063;padding: 0px;border-radius: 4px;width: fit-content; background-color: #19b330;color: #040063;">{{i.TGT2 || ''}} </span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 0px;margin-left: 15px;">{{i.TGT2_DATETIME}}</span></p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TGT3_HIT == 'None' || i.TGT3_HIT == ''">{{i.TGT3 || ''}}</p>
+                            <p style="font-size: 12px;" *ngIf="i.TGT3_HIT == 'Hit'"><span
+                                    style="color: #040063;padding: 0px;border-radius: 4px;width: fit-content; background-color: #19b330;color: #040063;">{{i.TGT3 || ''}} </span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 0px;margin-left: 15px;">{{i.TGT3_DATETIME}}</span></p>
+                            <p style="font-size: 12px;color: #040063;padding: 0px;border-radius: 4px;width: fit-content;" *ngIf="i.TSL_HIT == 'None' || i.TSL_HIT == ''">{{i.TSL || ''}}</p>
+                            <p style="font-size: 12px;" *ngIf="i.TSL_HIT == 'Hit'"><span style="color: #ffffff;padding: 0px;border-radius: 4px;width: fit-content; background-color: #f53d3d;">{{i.TSL || ''}} </span><span
+                                    style="font-size: 12px;font-weight: bold;padding: 0px;margin-left: 15px;">{{i.TSL_DATETIME}}</span></p>
+                        </ion-col>
+                    </ion-row>
+                    <div align="end">
+                        <p style="color: #8b8b8b;padding: 3px;font-size: 12px;">{{i.INIT_DATETIME}}</p>
+                    </div>
+                </ion-card>
+
+            </ion-list>
+        </div>
+    </ion-list>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+        <ion-infinite-scroll-content></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+</ion-content>

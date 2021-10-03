@@ -1,0 +1,50 @@
+page-trading {
+
+  .content-btn {
+    height: 4.6rem;
+    margin-top: 6px;
+    margin-bottom: 9px;
+    background-color: #ed3954;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    //-webkit-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.67);
+    //-moz-box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.67);
+    //box-shadow: 0px 0px 11px 1px rgba(0,0,0,0.67);
+  }
+
+  .vertical-align-content > *
+  {
+    //display: flex!important;
+    //align-content: center!important;
+    //align-items: center!important;
+  }
+
+  .row{
+    //align-items: center;
+  }
+  .button{
+    height: 18rem;
+    margin-top: 30%;
+  }
+  th {
+    padding: 5px;
+    background-color: #ed3954;
+    color: white;
+    border: 1px solid black;
+    width: 50%;
+  }
+  td{
+    padding: 5px;
+    text-align: center;
+    border: 1px solid black;
+  }
+  table{
+    display: table;
+    border-collapse: separate;
+    border-spacing: 5px;
+    border-color: gray;
+    width: 100%;
+    border: 1px solid black;
+  }
+}

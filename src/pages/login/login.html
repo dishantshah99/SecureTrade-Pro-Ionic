@@ -1,0 +1,44 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary" align="center">
+        <ion-title>Login</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+    <div style="margin-top: 10px " id="cloud-layer">
+        <ion-row style="padding-left: 20px;padding-right: 20px">
+            <ion-col>
+                <ion-list>
+                    <ion-item style="border: 1px #000000 solid">
+                        <img item-start style="width: 25px;height: 20px; margin-top: 10px ;margin-left: 5px" src="assets/imgs/indianflag.jpg">
+                        <!--#number-->
+                        <ion-label style="color: #000000;margin-left: 5px;font-size: 18px">+91</ion-label>
+                        <ion-input type="number" placeholder="Enter Number" [value]="numberset" style="color: #000000;margin-left: -10px;font-size: 18px" autocomplete="off" [autocomplete]="false" #number></ion-input>
+                    </ion-item>
+
+                </ion-list>
+            </ion-col>
+        </ion-row>
+    </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar color="primary">
+        <ion-row col-12 style="padding: 0px;">
+            <!--<ion-col col-6>-->
+            <!--<div><span style="font-weight: bold; font-size: 16px ;color: #0093DD" (click)="skipbtn()">SKIP</span></div>-->
+            <!--</ion-col>-->
+            <ion-col col-12 (click)="Loginbtn()">
+                <div><span style="font-weight: bold; font-size: 16px ;color: #ffffff">NEXT</span></div>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

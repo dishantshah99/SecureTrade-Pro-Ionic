@@ -1,0 +1,66 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>KYC Document</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-card-content style=" margin: -15px;">
+            <ion-row col-12>
+
+                <ion-col col-3 style="margin-top: auto;margin-bottom: auto">
+                    <img class="circle-pic"  src="{{base64Image ||'assets/imgs/app_background.png'}}" />
+                </ion-col>
+
+                <ion-col col-7 style="margin-top: auto;margin-bottom: auto">
+                    <div style="font-weight: bold; color: #757575">Pancard</div>
+                </ion-col>
+
+                <ion-col col-2 style="margin-top: auto;margin-bottom: auto">
+                    <!--<fa-icon name="camera" *ngIf="hideIcon" color="primary" size="1x" (click)="presentActionSheet('pancard')"></fa-icon>-->
+                    <img src="assets/imgs/camera.png" *ngIf="hideIcon" (click)="presentActionSheet('pancard')" style="width: 25px;height: 25px;"/>
+                </ion-col>
+
+            </ion-row>
+
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+        <ion-card-content style=" margin: -15px;">
+            <ion-row col-12>
+
+                <ion-col col-3>
+                    <img  class="circle-pic"  src="{{adharCardbase64Image || 'assets/imgs/app_background.png'}}" />
+                </ion-col>
+
+                <ion-col col-7 style="margin-top: auto;margin-bottom: auto">
+                    <div style="font-weight: bold; color: #757575">Aadhaar card</div>
+                </ion-col>
+
+                <ion-col col-2 style="margin-top: auto;margin-bottom: auto">
+
+                    <!--<fa-icon name="camera" *ngIf="hideIcon" color="primary" size="1x" (click)="presentActionSheet('adharcard')"></fa-icon>-->
+                    <img src="assets/imgs/camera.png" *ngIf="hideIcon_aadhar" (click)="presentActionSheet('adharcard')" style="width: 25px;height: 25px;"/>
+                </ion-col>
+
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>
+
+<ion-footer *ngIf="submitbutton">
+
+    <ion-row col-12 style="padding: 0px;" >
+        <ion-col col-12>
+            <button ion-button id="adharcard" full color="primary" style="border-radius: 2px " (click)="submit()" >Submit Document</button>
+        </ion-col>
+
+    </ion-row>
+
+</ion-footer>

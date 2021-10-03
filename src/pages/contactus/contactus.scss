@@ -1,0 +1,33 @@
+page-contactus {
+
+  .scroll-content {
+    background-image: none;
+  }
+  .title-md{
+    display: inline-block;
+  }
+  .button-full.button-outline {
+    border-radius: 4px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+  }
+
+  .footer-ios .toolbar-ios:first-child .toolbar-background-ios {
+    border-width: 0px 0 0;
+  }
+
+  .header-ios .toolbar-background-ios, .footer-ios .toolbar-background-ios {
+    border-style: solid;
+    border-color: rgba(255, 255, 255, 0);
+  }
+
+  .toolbar-background-ios {
+    background: #fff;
+  }
+
+  .toolbar-background-md {
+    background: #fff;
+  }
+
+
+}

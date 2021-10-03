@@ -1,0 +1,116 @@
+page-signup {
+
+  .scroll-content {
+    //background-image: none;
+    //overflow: hidden !important;
+  }
+  
+  
+  .content-ios:not([no-bounce]) > .scroll-content::before {
+    bottom: -1px;
+  }
+
+  .content-ios:not([no-bounce]) > .scroll-content::after {
+    top: -1px;
+  }
+
+  .login-content {
+    //background: #00aa8d;
+
+    .logo-row {
+      padding-top: 50px;
+      padding-bottom: 20px;
+    }
+  }
+
+  .login-box {
+    background: #ffffff;
+    padding: 20px 20px 0px 20px;
+    margin-top: 30px;
+    width: 200px;
+
+  }
+
+  ion-row {
+    align-items: center;
+    text-align: center;
+  }
+
+  ion-item {
+    border-radius: 3px !important;
+    padding-left: 30px !important;
+    padding-right: 50px !important;
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    border: 1px solid #ffffff;
+    border-bottom: 0px !important;
+    box-shadow: none !important;
+  }
+
+  .label-md {
+    margin: 13px 8px 13px 0;
+  }
+
+  .signup-col {
+    margin: 0px 16px 0px 16px;
+    padding-bottom: 20px;
+  }
+
+  .item-inner {
+    border-bottom: 2px solid color($colors, "primary") !important;
+    box-shadow: none !important;
+  }
+
+  .submit-btn {
+    border-radius: 5px !important;
+
+    //border: 1px solid #ffffff;
+  }
+
+  .register-btn {
+    color: color($colors, "light");
+    width: 100px;
+    font-size: 15px;
+    background-color: color($colors, "primary");
+  }
+
+  //setting
+  .button-full.button-outline {
+    border-radius: 4px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-color: color($colors, "primary");
+
+  }
+
+  .bg {
+
+    border-radius: 4px;
+    border-right-width: 1px;
+    border-left-width: 1px;
+    border-color: #ffffff;
+    padding-left: 25%;
+    padding-right: 25%;
+  }
+
+  .radio-grp {
+    padding-right: 5px !important;
+    .item-inner {
+      border-bottom-color: transparent !important;
+    }
+  }
+
+  .radio-grp-last {
+    padding-left: 5px !important;
+    padding-right: 25px !important;
+    .item-inner {
+      border-bottom-color: transparent !important;
+    }
+  }
+
+  //.radio-grp-last
+
+  ion-list {
+    display: inline-flex;
+  }
+}

@@ -1,0 +1,4 @@
+# Referenced at /home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/build/intermediates/manifests/full/release/AndroidManifest.xml:63
+-keep class android.support.multidex.MultiDexApplication { <init>(); }
+# Referenced at /home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/build/intermediates/manifests/full/release/AndroidManifest.xml:63
+-keep class android.support.v4.app.CoreComponentFactory { <init>(); }

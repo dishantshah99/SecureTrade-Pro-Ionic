@@ -1,0 +1,55 @@
+<!--
+  Generated template for the KnowledgeZonePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Video</ion-title>
+        <!--<span style="float: right; color: white;font-weight: bold;" end><ion-icon name="md-share" style=" margin-left: 0px; margin-right: 17px; margin-top: 4px; " (click)="shareScreenshot()"></ion-icon></span>-->
+    </ion-navbar>
+    <!--<ion-toolbar no-border-top>-->
+    <!--<ion-segment [(ngModel)]="free">-->
+    <!--<ion-segment-button value="freevideo">-->
+    <!--Free Video-->
+    <!--</ion-segment-button>-->
+    <!--<ion-segment-button value="premiumvideo">-->
+    <!--Premium Video-->
+    <!--</ion-segment-button>-->
+    <!--</ion-segment>-->
+    <!--</ion-toolbar>-->
+
+</ion-header>
+
+
+<ion-content>
+
+    <div>
+        <ion-list *ngIf="hide == false">
+            <ion-list *ngFor="let item of category" style=" margin: 0px 0px 0px;" (tap)="opendetails(item.ID)">
+                <ion-card class="card" type="button">
+                    <img [src]="item.IMAGE" style="width: 100%;height: 200px;">
+                    <ion-item>
+                        <h2 style="color: #ed3954;">{{item.CATEGORYNAME}}</h2>
+                    </ion-item>
+                </ion-card>
+            </ion-list>
+        </ion-list>
+
+        <ion-list *ngIf="hide == true">
+            <ion-list *ngFor="let item of videodetails" style="margin: 0px 0px 0px;" (tap)="openvideolink(item.ID)">
+                <ion-card class="card">
+                    <img src="{{item.IMAGE}}" style="border-bottom: 1px solid #8b8b8b;width: 348px;height: 225px"/>
+                    <ion-item>
+                        <h2 style="color: #ed3954;">{{item.TITLE}}</h2>
+                        <p style="font-size: 0.7em;">{{item.DATE}}</p>
+                    </ion-item>
+                </ion-card>
+
+            </ion-list>
+        </ion-list>
+
+    </div>
+</ion-content>

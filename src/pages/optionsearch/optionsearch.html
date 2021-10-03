@@ -1,0 +1,32 @@
+<!--
+  Generated template for the OptionsearchPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>Search Symbol</ion-title>
+    </ion-navbar>
+    <ion-searchbar placeholder="Search Symbol" (ionInput)="initializeItems3($event)" style="border-radius: 50px;" no-margin no-padding #search></ion-searchbar>
+</ion-header>
+
+
+<ion-content>
+    <div >
+        <ion-list *ngFor="let j of OPTIONDATANEW">
+            <ion-item no-lines no-border (click)="selectdata(j)">
+                <div item-start>
+                    <h3 style="font-weight: bold;">{{j.SYMBOL}}</h3>
+                    <!--<p style="color: #999999;font-size: 12px;">{{j.COMPANY +" "+ j.FUT_OPT_DATE_MONTH +" "+ j.STRIKE + " "+ j.DISPLAY_OPTION_TYPE}}</p>-->
+                </div>
+            </ion-item>
+            <hr no-margin no-padding>
+        </ion-list>
+
+        <ion-infinite-scroll (ionInfinite)="doInfinite($event,'option')">
+            <ion-infinite-scroll-content></ion-infinite-scroll-content>
+        </ion-infinite-scroll>
+    </div>
+</ion-content>

@@ -1,0 +1,101 @@
+<ion-header xmlns:mailto="http://www.w3.org/1999/xhtml" xmlns:mailto="http://www.w3.org/1999/xhtml" xmlns:mailto="http://www.w3.org/1999/xhtml">
+
+    <ion-navbar color="primary">
+        <ion-title>Get In Touch</ion-title>
+        <!--<ion-icon name="md-share" style=" margin-left: 17px; margin-right: 17px; margin-top: 4px;font-weight: bold; "></ion-icon>-->
+        <span style="float: right; color: white;font-weight: bold;" end><ion-icon name="md-share" style=" margin-left: 17px; margin-right: 20px; margin-top: 4px;font-weight: bold; " (click)="shareInfo()"></ion-icon></span>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #ededed">
+
+    <ion-card>
+
+        <ion-card-header color="primary">
+            Call Us :
+        </ion-card-header>
+
+        <ion-card-content>
+
+            <p style="margin-top: -15px">
+                <ion-item style="padding-left: 0px">
+                    <ion-item>
+                        <!--<fa-icon name="phone" size="1x"></fa-icon>-->
+                        <img src="assets/imgs/phone.png" style="width: 20px;height: 20px;" item-start>
+                        <span style="margin-left: 10px;" (click)="launchDialer('7041944934')">+91 7041944934</span>
+                    </ion-item>
+                </ion-item>
+            </p>
+
+            <!-- <p style="margin-top: -15px">
+                 <ion-item style="padding-left: 0px">
+                     <ion-item>
+                         &lt;!&ndash;<fa-icon name="phone" size="1x"></fa-icon>&ndash;&gt;
+                         <img src="assets/imgs/phone.png" style="width: 20px;height: 20px;" item-start>
+                         <span style="margin-left: 10px;" (click)="launchDialer('7878066466')">+91 7878066466</span>
+                     </ion-item>
+                 </ion-item>
+             </p>-->
+            <!--
+                        <p style="margin-top: -15px">
+                            <ion-item style="padding-left: 0px">
+                                <ion-item>
+                                    &lt;!&ndash;<fa-icon name="phone" size="1x"></fa-icon>&ndash;&gt;
+                                    <img src="assets/imgs/phone.png" style="width: 20px;height: 20px;" item-start>
+                                    <span style="margin-left: 10px;" (click)="launchDialer('9228165071')">+91 9228165071</span>
+                                </ion-item>
+                            </ion-item>
+                        </p>-->
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card>
+
+        <ion-card-header color="primary">
+            Email Us :
+        </ion-card-header>
+
+        <ion-card-content>
+
+            <p style="margin-top: -15px">
+                <ion-item style="padding-left: 0px">
+                    <ion-item>
+                        <img src="assets/imgs/envelope.png" style="width: 20px;height: 20px;" item-start>
+                        <span style="margin-left: 10px;" (click)="sendEmail()">connect@securetrade.in</span>
+                    </ion-item>
+                </ion-item>
+            </p>
+            <p style="margin-top: -15px">
+                <ion-item style="padding-left: 0px">
+                    <ion-item>
+                        <img src="assets/imgs/envelope.png" style="width: 20px;height: 20px;" item-start>
+                        <span style="margin-left: 10px;" (click)="sendMail()">hasmukh18@gmail.com</span>
+                    </ion-item>
+                </ion-item>
+            </p>
+        </ion-card-content>
+    </ion-card>
+    <ion-card>
+        <ion-card-header color="primary">
+            Follow Us on :
+        </ion-card-header>
+        <ion-card-content>
+            <ion-row>
+                <ion-col col-3>
+                    <ion-icon name="logo-facebook" style="margin: 5px;font-size: 38px;color: cornflowerblue" (click)="openUrl('https://www.facebook.com/profile.php?id=100033561763822')"></ion-icon>
+                </ion-col>
+                <ion-col col-3>
+                    <ion-icon name="logo-twitter" style="margin: 5px;font-size: 38px;color: deepskyblue" (click)="openUrl('https://twitter.com/secure_tradein')"></ion-icon>
+                </ion-col>
+                <ion-col col-3>
+                    <ion-icon name="logo-instagram" style="margin: 5px;font-size: 38px;color: #9236C9;" (click)="openUrl('https://www.instagram.com/securetradetraining18/')"></ion-icon>
+                </ion-col>
+                <ion-col col-3>
+                    <ion-icon name="logo-youtube" style="margin: 5px;font-size: 38px;color: red;" (click)="openUrl('https://www.youtube.com/user/hasmukh181818')"></ion-icon>
+                </ion-col>
+            </ion-row>
+        </ion-card-content>
+    </ion-card>
+</ion-content>

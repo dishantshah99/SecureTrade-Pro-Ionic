@@ -1,0 +1,37 @@
+<!--
+  Generated template for the Charts2Page page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>{{title}}
+            <!--<span style="float: right;"> <ion-icon name="md-share" style="" item-end></ion-icon></span>-->
+        </ion-title>
+        <span style="float: right; color: white" end ><ion-icon name="md-share" style=" margin-left: 17px; margin-right: 17px; margin-top: 4px;font-weight: bold; font-size: 22px; " (click)="shareScreenshot()"></ion-icon></span>
+
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <ion-row style="background-color: white">
+        <ion-col>
+            <ion-label class="select-option" style="background-color: #ffffff;" (click)="openModaleod()">
+                <ion-icon style="margin-right: 8px; color: #ed3954" name="ios-apps" item-right ></ion-icon>
+                {{title}}
+                <span style="float: right;"><ion-icon Style="color: #ed3954;font-weight: bold;" name="ios-search" item-end></ion-icon></span>
+                <!--<span style="float: right;">
+                    <ion-icon [name]="visible ? 'arrow-drop up-circle' :'arrow-drop down-circle'"></ion-icon>
+                </span>-->
+            </ion-label>
+
+            <!--<ion-img style="width: 100%;" [height]="imageHeight" src="{{ imageUrl }}"></ion-img>-->
+            <img src="{{imageUrl}}" style="width: 100%;margin-top: 137px;" #myImage (click)="presentImage(myImage)">
+        </ion-col>
+    </ion-row>
+
+</ion-content>

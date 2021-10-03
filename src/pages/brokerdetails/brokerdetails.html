@@ -1,0 +1,119 @@
+<!--
+  Generated template for the BrokerdetailsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div>
+        <ion-list *ngIf="hide == false">
+            <ion-list style=" margin: 0px 0px 0px;" (tap)="opendetails()" *ngIf="type == 1">
+                <ion-label style="    padding: 5px;font-size: 18px;font-weight: bold;">Product & Services :-</ion-label>
+                <ion-card class="card" type="button" align="center">
+                    <div align="center">
+                        <img style="width: 80px;height: 80px;background-color: #EFEFEF;border-radius: 50%;padding: 5px;margin-top: 8px;" src="assets/imgs/pb1.png">
+                    </div>
+                    <ion-item>
+                        <h2 style="color: #ed3954;text-align: center">EQUITY</h2>
+                        <p style="text-align: center" text-wrap>Trading in equities with Profitmart brings you the very best of the Technology, Research, Access and Ease. It empowers you to invest in Equities by providing an anchor to guide you as
+                            to when,
+                            where and how to invest. </p>
+                        <div align="end">
+                            <p style="color: #f53d3d;font-size: 12px;">Read More.</p>
+                        </div>
+                    </ion-item>
+                </ion-card>
+
+                <ion-card class="card" type="button" align="center">
+                    <div align="center">
+                        <img style="width: 80px;height: 80px;background-color: #EFEFEF;border-radius: 50%;padding: 5px;margin-top: 8px;" src="assets/imgs/pb2.png">
+                    </div>
+                    <ion-item>
+                        <h2 style="color: #ed3954;text-align: center">COMMODITY</h2>
+                        <p style="text-align: center" text-wrap>Commodity derivative market has emerged as a new avenue for investors to create wealth. Today, Commodities have evolved as the next best option after stocks and bonds for diversifying the portfolio. Profitmart aims to harness the immense potential of the  </p>
+                        <div align="end">
+                            <p style="color: #f53d3d;font-size: 12px;">Read More.</p>
+                        </div>
+                    </ion-item>
+                </ion-card>
+
+                <ion-card class="card" type="button" align="center">
+                    <div align="center">
+                        <img style="width: 80px;height: 80px;background-color: #EFEFEF;border-radius: 50%;padding: 5px;margin-top: 8px;" src="assets/imgs/pb3.png">
+                    </div>
+                    <ion-item>
+                        <h2 style="color: #ed3954;text-align: center">WEALTH MANAGEMENT</h2>
+                        <p style="text-align: center" text-wrap>Your financial success depends on being able to put all the puzzle pieces of your life’s goals together.  Profitmart will help you assemble all the pieces to create “your” unique financial picture.  </p>
+                        <div align="end">
+                            <p style="color: #f53d3d;font-size: 12px;">Read More.</p>
+                        </div>
+                    </ion-item>
+                </ion-card>
+
+                <ion-card class="card" type="button" align="center">
+                    <div align="center">
+                        <img style="width: 80px;height: 80px;background-color: #EFEFEF;border-radius: 50%;padding: 5px;margin-top: 8px;" src="assets/imgs/pb4.png">
+                    </div>
+                    <ion-item>
+                        <h2 style="color: #ed3954;text-align: center">DEPOSITORY</h2>
+                        <p style="text-align: center" text-wrap>Our depository services offer you a secure, convenient, paperless and cost effective way to keep track of your investments in shares and other instruments over a period of time. </p>
+                        <div align="end">
+                            <p style="color: #f53d3d;font-size: 12px;">Read More.</p>
+                        </div>
+                    </ion-item>
+                </ion-card>
+
+                <ion-card class="card" type="button" align="center">
+                    <div align="center">
+                        <img style="width: 80px;height: 80px;background-color: #EFEFEF;border-radius: 50%;padding: 5px;margin-top: 8px;" src="assets/imgs/pb5.png">
+                    </div>
+                    <ion-item>
+                        <h2 style="color: #ed3954;text-align: center">STOCK SIP</h2>
+                        <p style="text-align: center" text-wrap>Stock SIP is a vehicle offered to help investor save regularly. It is just like a recurring deposit with the bank where investor put in a small amount every month.  </p>
+                        <div align="end">
+                            <p style="color: #f53d3d;font-size: 12px;">Read More.</p>
+                        </div>
+                    </ion-item>
+                </ion-card>
+
+                <ion-card class="card" type="button" align="center">
+                    <div align="center">
+                        <img style="width: 80px;height: 80px;background-color: #EFEFEF;border-radius: 50%;padding: 5px;margin-top: 8px;" src="assets/imgs/pb6.png">
+                    </div>
+                    <ion-item>
+                        <h2 style="color: #ed3954;text-align: center">CURRENCY</h2>
+                        <p style="text-align: center" text-wrap>The global increase in trade and foreign investments has led to inter-connection of many national economies leading to greater need for a stronger . </p>
+                        <div align="end">
+                            <p style="color: #f53d3d;font-size: 12px;">Read More.</p>
+                        </div>
+                    </ion-item>
+                </ion-card>
+
+
+            </ion-list>
+        </ion-list>
+
+        <ion-list *ngIf="hide == true">
+            <ion-list style="margin: 0px 0px 0px;" (tap)="openvideolink()">
+                <ion-card class="card">
+                    <img src="{{item.IMAGE}}" style="border-bottom: 1px solid #8b8b8b;width: 348px;height: 225px"/>
+                    <ion-item>
+                        <h2 style="color: #ed3954;">{{item.TITLE}}</h2>
+                        <p style="font-size: 0.7em;">{{item.DATE}}</p>
+                    </ion-item>
+                </ion-card>
+
+            </ion-list>
+        </ion-list>
+
+    </div>
+</ion-content>

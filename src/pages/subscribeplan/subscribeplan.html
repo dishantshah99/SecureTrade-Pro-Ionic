@@ -1,0 +1,122 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Subscribe Plan</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content class="scroll-content">
+
+    <ion-card class="ion-cards" *ngFor="let item of items;  let i = index">
+        <ion-grid>
+            <ion-row>
+                <ion-col col-2 class="ion-col-bg">
+                    <p class="amount-p">{{item.TOTAL}}</p>
+                </ion-col>
+
+                <ion-col col-8 class="select">
+                    <p class="title-p" style="margin-top: 5px;">{{item.TITLE}}</p>
+                    <p style="font-size: 11px;" *ngFor="let j of item.SUB_DETAIL">{{j.TYPE}}</p>
+                </ion-col>
+                <ion-col col-2 class="select_check">
+                    <ion-item class="inner">
+                        <ion-radio color="blue" [checked]="item.ID == SELECTEDID" (ionSelect)="changeredio(item.ID,item.TOTAL)"></ion-radio>
+                    </ion-item>
+                </ion-col>
+
+            </ion-row>
+        </ion-grid>
+
+    </ion-card>
+
+</ion-content>
+
+
+<ion-footer>
+    <ion-item no-lines>
+        <ion-label class="popup" style="color: black;font-size: 18px;">Subscribe For</ion-label>
+        <ion-select no-margin no-padding style="padding-right: 10px" [(ngModel)]="MONTH" (ionChange)="callapi(MONTH)">
+            <ion-option *ngFor="let i of montharray let p = index" [value]="i" [selected]="p == 0">{{i}} month</ion-option>
+        </ion-select>
+    </ion-item>
+    <!--<ion-item no-border no-lines>-->
+    <!--<ion-icon item-start no-margin no-padding style="color: #ed3954;" ios="ios-pricetags-outline" md="ios-pricetags-outline"></ion-icon>-->
+    <!--<ion-label class="popup" (click)="Couponcode()">Have any Coupon Code ?</ion-label>-->
+    <!--</ion-item>-->
+    <div *ngIf="Valid_code == true" align="center">
+        <ion-label style="font-size: 10px;
+    width: 100%;color: #32c9ac" (click)="openinput()">Enter Coupon Code
+        </ion-label>
+        <div align="center" style="width: 100%; bottom: 0; margin-bottom: 5%;" *ngIf="hidebutton">
+            <ion-item style="width: 80%; background: transparent" no-padding no-lines>
+                <ion-input style="background-color: white;height: 36px;border-radius: 6px;" placeholder="Enter Code" [(ngModel)]="code"></ion-input>
+                <button item-end ion-button class="demo" style="margin-top: 10px;" (click)="Couponcode()">Apply</button>
+            </ion-item>
+        </div>
+    </div>
+
+    <div *ngIf="Showcode != true" align="center">
+        <ion-label style="font-size: 10px;
+    width: 100%;color: #32c9ac" (click)="openinput()">Code Apply Successfully
+        </ion-label>
+
+        <ion-label style="font-size: 10px;
+    width: 100%;color: #32c9ac" (click)="openinput()"> Rs.{{DISCOUNT}} OFF
+        </ion-label>
+        <ion-chip #chip1>
+            <ion-avatar>
+                <img src="assets/imgs/planicon.png" style="padding: 7px;">
+            </ion-avatar>
+            <ion-label>{{code}}</ion-label>
+            <button ion-button clear color="#32c9ac" (click)="delete(chip1)">
+                <ion-icon name="close-circle"></ion-icon>
+            </button>
+        </ion-chip>
+    </div>
+
+    <!--<ion-item no-border no-lines>-->
+    <!--<ion-label style="color:#000; width: 50%" item-start>Month</ion-label>-->
+    <!--<ion-select no-margin no-padding style="margin-left: 40%">-->
+    <!--<ion-option [selected]="true">3 month</ion-option>-->
+    <!--<ion-option>6 month</ion-option>-->
+    <!--<ion-option>12 month</ion-option>-->
+    <!--</ion-select>-->
+    <!--</ion-item>-->
+    <!--<ion-item no-border no-lines>-->
+    <!--<ion-icon no-margin no-padding item-start style="color: #ed3954;" ios="ios-pricetags-outline" md="ios-pricetags-outline"></ion-icon>-->
+    <!--<ion-label class="popup" (click)="promocode()">{{api.PROMOCODE || "Have any Coupon Code ?"}}</ion-label>-->
+    <!--</ion-item>-->
+    <!-- <ion-row style="height: 30px; margin-bottom: 10px;background-color: white">
+         <ion-col style="margin-top: -15px;">
+             <ion-icon align="center" style="margin-left: 7px;margin-top: 18px;color: #2e7d32;" ios="ios-pricetags-outline" md="ios-pricetags-outline"></ion-icon>
+         </ion-col>
+         <ion-col col-5 style="margin-top: -20px;">
+             <ion-label style="margin-left: -10px;" class="popup" (click)="promocode()">{{api.PROMOCODE || "Have any Coupon Code ?"}}</ion-label>
+         </ion-col>
+         <ion-col>
+             <img src="assets/imgs/cancel.png" style="height: 20px; width: 20px;" item-end *ngIf="api.promocodekey == 1" (click)="removecode()">
+         </ion-col>
+         <ion-col col-4 style="margin-top: -10px;">
+             &lt;!&ndash;<ion-label align="center" class="qty">Total Qty : {{TOTALQTY}}</ion-label>&ndash;&gt;
+         </ion-col>
+     </ion-row>-->
+    <!-- <ion-row col-12 style="padding: 0px; background: #ed3954">
+
+         &lt;!&ndash;<ion-col col-6>&ndash;&gt;
+             &lt;!&ndash;<div style="font-weight: bold; margin-top: 4px">&ndash;&gt;
+                 &lt;!&ndash;<span style="color: #ffffff;font-size: 13px;">₹</span> <span style="color: #ffffff; font-size: 13px;">Wallet Balance : {{debitAmount || '0.00'}}</span><br>&ndash;&gt;
+                 &lt;!&ndash;<span style="color: #ffffff;font-size: 13px;">₹</span> <span style="color: #ffffff; font-size: 13px;">Payable Amount : {{finalPayableAmount || '0.00'}}</span>&ndash;&gt;
+             &lt;!&ndash;</div>&ndash;&gt;
+         &lt;!&ndash;</ion-col>&ndash;&gt;
+
+
+         <ion-col col-6>
+             <button ion-button full style="margin-bottom: 0px; width: 75%; background: #f53d3d; margin-top: 8px; border-radius: 5px; margin-left: 15px;" (click)="SubmitPlan()">Subscribe Plan  Payable Amount : {{finalPayableAmount || '0.00'}}</button>
+         </ion-col>
+     </ion-row>
+ -->
+    <button *ngIf="finalPayableAmount != 0" ion-button full (click)="SubmitPlan()">Payable Amount : Rs. {{finalPayableAmount || '0.00'}}</button>
+    <button *ngIf="finalPayableAmount == 0" ion-button full (click)="SubmitPlan()">Buy Now</button>
+</ion-footer>
+

@@ -1,0 +1,77 @@
+page-sub-advisory {
+
+  .card {
+    margin: 5px;
+    border-radius: 2px;
+    width: calc(100% - 12px);
+    -webkit-box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+  }
+
+  .scroll-content {
+    background-image: none;
+  }
+
+  .sell-button {
+    margin: auto;
+    padding: auto;
+    width: 55px;
+    height: 22px;
+    font-size: 12px;
+    border-radius: 4px;
+    text-transform: none;
+  }
+
+  .title-md {
+    display: inline-block;
+  }
+
+  .label {
+    margin: 0px 0px 0px 0;
+  }
+
+  .list {
+    margin: 0 0 8px;
+    //margin-top: -4px;
+  }
+
+  .item {
+    padding-left: 0px;
+  }
+
+  .item-inner {
+    padding-right: 0px !important;
+  }
+
+  //Custom Alert_Box
+
+  ion-modal.custom-popup ion-backdrop {
+    visibility: visible !important;
+    z-index: 0;
+  }
+  ion-modal.custom-popup .modal-wrapper {
+    top: 20%;
+    width: 60%;
+    height: 300px;
+    position: absolute;
+  }
+
+  .toolbar {
+    min-height: 52px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .segment-button {
+    background-color: color($colors, "primary") !important;
+    border-color: color($colors, "light") !important;
+    color: color($colors, "light") !important;
+    //border-bottom-width: 4px !important;
+  }
+  .segment-button.segment-activated {
+    color: color($colors, "primary") !important;
+    background-color: color($colors, "light") !important;
+    border-color: color($colors, "light") !important;
+    border-left-width: 1px !important;
+  }
+}

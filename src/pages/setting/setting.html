@@ -1,0 +1,180 @@
+<!--
+  Generated template for the SettingPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Notification</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+
+    <ion-list style="margin-bottom: 2px;">
+
+        <ion-item>
+
+            <ion-label class="lable-style">
+
+                <!--<fa-icon style="font-size: 19px;" class="fa-icon" name="cog" item-left medium>-->
+
+                <!--</fa-icon>-->
+
+                <!--<img src="assets/imgs/setting_icon.png" item-left/>-->
+
+                <span>Notification Setting</span></ion-label>
+
+        </ion-item>
+
+        <ion-item class="items">
+
+            <ion-label> Advisory</ion-label>
+            <ion-toggle [checked]="advisorychecked" (ionChange)="notify($event,1)"></ion-toggle>
+
+        </ion-item>
+
+        <ion-item class="items">
+
+            <ion-label>Video</ion-label>
+
+            <ion-toggle [checked]="videoselected" (ionChange)="notify($event,2)"></ion-toggle>
+
+        </ion-item>
+
+        <ion-item class="items">
+
+            <ion-label>Blog</ion-label>
+
+            <ion-toggle [checked]="bolgselected" (ionChange)="notify($event,7)"></ion-toggle>
+
+        </ion-item>
+
+        <!--<ion-item class="items">-->
+            <!--<ion-label>Fundamental Call</ion-label>-->
+            <!--<ion-toggle [checked]="fcalssselected" (ionChange)="notify($event,4)"></ion-toggle>-->
+        <!--</ion-item>-->
+
+        <!--<ion-item class="items">-->
+            <!--<ion-label>Wallet</ion-label>-->
+            <!--<ion-toggle [checked]="walletselected" (ionChange)="notify($event,5)"></ion-toggle>-->
+        <!--</ion-item>-->
+
+        <ion-item class="items">
+            <ion-label>Admin</ion-label>
+            <ion-toggle [checked]="adminnotiselected" (ionChange)="notify($event,6)"></ion-toggle>
+        </ion-item>
+
+    </ion-list>
+
+    <!-- <accordion-list color="primary" title="Refresh Time Setting">-->
+
+    <div style="background-color: white;">
+        <ion-item style="background-color: white">
+            <ion-icon name="md-refresh" item-start></ion-icon>
+            <ion-label color="primary" >Refresh Time Setting</ion-label>
+            <ion-icon name="ios-arrow-up" item-end *ngIf="hideup"></ion-icon>
+            <ion-icon name="ios-arrow-down" item-end *ngIf="hidedown"></ion-icon>
+        </ion-item>
+        <div style="padding: 10px;" *ngIf="hiderefresh">
+            <ion-label class="lable-style">
+                <ion-icon name="md-refresh"></ion-icon>
+                NSE Cash Refresh
+            </ion-label>
+
+            <ion-row radio-group [(ngModel)]="NseCashRefresh" (ionChange)="setradio(NseCashRefresh)">
+
+                <ion-col>
+
+                    <ion-item>
+
+                        <ion-label>AUTO</ion-label>
+
+                        <ion-radio value="nseauto" [checked]="NSEAUTO" [value]="AUTO" (click)="setradio('NSEAUTO')"></ion-radio>
+
+                    </ion-item>
+
+                </ion-col>
+
+                <ion-col>
+                    <ion-item>
+                        <ion-label>MANUAL</ion-label>
+                        <ion-radio value="nsemanual" [value]="MANUAL" [checked]="NSEMANUAL" (click)="setradio('NSEMANUAL')"></ion-radio>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-item *ngIf="NseCashhide">
+                <ion-input style="border-bottom: 1px solid #ed3954;" placeholder="Enter Your Refresh Time in Seconds" FormControl="NSETEXT" [(ngModel)]="NSETEXT" type="number" [value]="NSETEXT || '5'"  #NseRefreshRate></ion-input>
+            </ion-item>
+
+            <ion-label class="lable-style">
+                <ion-icon name="md-refresh"></ion-icon>
+                FO Refresh
+            </ion-label>
+            <ion-row radio-group [(ngModel)]="fo" (ionChange)="setradio(FORefresh)">
+                <ion-col>
+                    <ion-item>
+                        <ion-label>Auto</ion-label>
+                        <ion-radio value="foauto" [checked]="FOAUTO" (click)="setradio('FOAUTO')"></ion-radio>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>MANUAL</ion-label>
+                        <ion-radio value="fomanual" [checked]="FOMANUAL" (click)="setradio('FOMANUAL')"></ion-radio>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <ion-item *ngIf="Fohide">
+
+                <ion-input style="border-bottom: 1px solid #ed3954;" [(ngModel)]="FOTEXT" placeholder="Enter Your Refresh Time in Seconds" type="number" [value]="FOTEXT || '5'"  #NseRefreshRate></ion-input>
+                <!--<fa-icon name="eye" color="primary" item-right size="1x"></fa-icon>-->
+
+            </ion-item>
+
+            <ion-label class="lable-style">
+                <ion-icon name="md-refresh"></ion-icon>
+                MCX Refresh
+            </ion-label>
+            <ion-row radio-group [(ngModel)]="mxc" (ionChange)="setradio(MCXRefresh)">
+                <ion-col>
+                    <ion-item>
+                        <ion-label>Auto</ion-label>
+                        <ion-radio value="mcxauto" [checked]="MCXAUTO" (click)="setradio('MCXAUTO')"></ion-radio>
+                    </ion-item>
+                </ion-col>
+                <ion-col>
+                    <ion-item>
+                        <ion-label>Manual</ion-label>
+                        <ion-radio value="mcxmanual" [checked]="MCXMANUAL" (click)="setradio('MCXMANUAL')"></ion-radio>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+
+            <ion-item *ngIf="MCXhide">
+
+
+                <ion-input style="border-bottom: 1px solid #ed3954;" [(ngModel)]="MCXTEXT" placeholder="Enter Your Refresh Time in Seconds" type="number" [value]="MCXTEXT || '5'"  #NseRefreshRate></ion-input>
+                <!--<fa-icon name="eye" color="primary" item-right size="1x"></fa-icon>-->
+
+            </ion-item>
+        </div>
+    </div>
+    <!--</accordion-list>-->
+
+</ion-content>
+
+<ion-footer>
+
+    <ion-row col-12 style="padding: 0px;">
+        <ion-col col-12>
+            <button ion-button full color="primary" style="border-radius: 2px " (click)="submitsetting()">Apply</button>
+        </ion-col>
+
+    </ion-row>
+
+</ion-footer>

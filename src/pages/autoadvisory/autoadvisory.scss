@@ -1,0 +1,121 @@
+page-autoadvisory {
+  .label-md {
+    margin: 0px!important;
+  }
+  .vehicle.active {
+    background-color: #ed3954 !important;
+    color: white !important;
+    width: 100%;
+  }
+  ion-badge {
+    padding: 5px;
+    background-color: transparent !important;
+    border: 1px solid #ed3954;
+    color: #ed3954 !important;
+    width: 100%;
+  }
+  .scroll-content {
+    //background-image: none;
+    //background-color: transparent;
+  }
+  .title-md {
+    display: inline-block;
+  }
+
+  .bg-green {
+    -webkit-animation: bkg-green 1s infinite; /* Safari 4+ */
+    -moz-animation: bkg-green 1s infinite; /* Fx 5+ */
+    -o-animation: bkg-green 1s infinite; /* Opera 12+ */
+    animation: bkg-green 1s infinite; /* IE 10+, Fx 29+ */
+  }
+
+  @-webkit-keyframes bkg-green {
+    0%, 49% {
+      background-color: #19b330;
+      color: white;
+    }
+    50%, 100% {
+      background-color: #fff;
+      color: black;
+    }
+  }
+}
+
+page-auto-complete {
+  .back-button {
+    display: block !important;
+  }
+
+  //blink
+
+  @-webkit-keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-o-keyframes blink {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  .abc {
+    -webkit-animation: blink 1s;
+    -webkit-animation-iteration-count: infinite;
+    -moz-animation: blink 1s;
+    -moz-animation-iteration-count: infinite;
+    -o-animation: blink 1s;
+    -o-animation-iteration-count: infinite;
+  }
+
+  @-webkit-keyframes blinker {
+    from {
+      opacity: 1.0;
+    }
+    to {
+      opacity: 0.0;
+    }
+  }
+  .blink {
+    text-decoration: blink;
+    -webkit-animation-name: blinker;
+    -webkit-animation-duration: 0.6s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-animation-direction: alternate;
+  }
+
+}
+
+.select-option {
+  //background-color: #fff;
+  font-size: 16px;
+  padding: 12px;
+  border-radius: 8px;
+  margin: 10px;
+  -webkit-box-shadow: 0px 0px 42px 2px rgba(0, 0, 0, 0.65);
+  -moz-box-shadow: 0px 0px 42px 2px rgba(0, 0, 0, 0.65);
+  box-shadow: 0px 0px 42px 2px rgba(0, 0, 0, 0.65);
+}

@@ -1,0 +1,50 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>{{title}}</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div>
+        <ion-card class="ion-cards" *ngFor="let item of items">
+
+            <ion-row>
+
+                <ion-col col-2>
+
+                    <!--<p style="text-align: justify; padding: 5px;">-->
+                    <!--<fa-icon class="fa-icons" style="color:#ed3954" name="bell" item-left medium></fa-icon>-->
+
+                    <!--</p>-->
+                    <p style="text-align: justify; padding: 5px;">
+                        <!--<fa-icon class="fa-icons" style="color:#ed3954" name="bell" item-left medium></fa-icon>-->
+                        <ion-icon name="logo-rss" class="fa-icons" style="color:#ed3954" item-left></ion-icon>
+                    </p>
+                </ion-col>
+
+                <ion-col col-10>
+
+                    <div class="date">
+
+                        <h3 text-wrap>{{item.title}}</h3>
+                        <p style="margin-top: 10px;" [innerHTML]="item.description"></p>
+
+                        <!--<fa-icon class="new-data" item-right primary name="calendar"></fa-icon>-->
+                        <ion-item>
+                        <img src="assets/imgs/calendar.png" item-right  class="new-data"/>
+                        <label item-right class="lab" style="color: #8b8b8b; padding: 5px; text-align: left;" text-wrap>{{item.pubDate}}</label>
+                        </ion-item>
+                    </div>
+
+                </ion-col>
+
+            </ion-row>
+
+        </ion-card>
+
+    </div>
+
+</ion-content>

@@ -1,0 +1,68 @@
+<!--
+  Generated template for the OptionselectPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+    <ion-navbar>
+        <ion-title>Search Symbol</ion-title>
+    </ion-navbar>
+
+    <ion-toolbar no-border-top no-padding style=" min-height: 30px !important;height: 30px;padding-bottom: 0 !important;">
+        <ion-segment [(ngModel)]="CALL">
+            <ion-segment-button value="CALL">
+                CALL
+            </ion-segment-button>
+            <ion-segment-button value="PUT">
+                PUT
+            </ion-segment-button>
+        </ion-segment>
+    </ion-toolbar>
+    <ion-navbar [ngSwitch]="CALL">
+        <ion-searchbar *ngSwitchCase="'CALL'" placeholder="Search Symbol" (ionInput)="initializeItems1($event)" style="border-radius: 50px;" no-margin no-padding #search></ion-searchbar>
+        <ion-searchbar *ngSwitchCase="'PUT'" placeholder="Search Symbol" (ionInput)="initializeItems2($event)" style="border-radius: 50px;" no-margin no-padding #search></ion-searchbar>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div [ngSwitch]="CALL" style="height: 100%;">
+        <div *ngSwitchCase="'CALL'">
+            <ion-list *ngFor="let i of CALLDATANEW" no-margin>
+                <ion-item no-lines no-border>
+                    <div item-start>
+                        <h3 style="font-weight: bold;">{{i.SYMBOL}}</h3>
+                        <p style="color: #999999;font-size: 12px;">{{i.COMPANY +" "+ i.FUT_OPT_DATE_MONTH +" "+ i.STRIKE + " "+ i.DISPLAY_OPTION_TYPE}}</p>
+                    </div>
+                    <ion-checkbox [checked]="i.IS_SELECTED" (click)="changedata(i.SYMBOL,i.TOKEN,i.SYMBOL_TYPE,i.IS_SELECTED)" [(ngModel)]="i.IS_SELECTED" item-end style="width: fit-content"></ion-checkbox>
+                </ion-item>
+                <hr no-margin no-padding>
+            </ion-list>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event,'cash')">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+        <div *ngSwitchCase="'PUT'">
+            <ion-list *ngFor="let i of PUTDATANEW" no-margin>
+                <ion-item no-lines no-border>
+                    <div item-start>
+                        <h3 style="font-weight: bold;">{{i.SYMBOL}}</h3>
+                        <p style="color: #999999;font-size: 12px;">{{i.COMPANY +" "+ i.FUT_OPT_DATE_MONTH +" "+ i.STRIKE + " "+ i.DISPLAY_OPTION_TYPE}}</p>
+                    </div>
+                    <ion-checkbox [checked]="i.IS_SELECTED" (click)="changedata(i.SYMBOL,i.TOKEN,i.SYMBOL_TYPE,i.IS_SELECTED)" [(ngModel)]="i.IS_SELECTED" item-end style="width: fit-content"></ion-checkbox>
+                </ion-item>
+                <hr no-margin no-padding>
+            </ion-list>
+
+            <ion-infinite-scroll (ionInfinite)="doInfinite($event,'cash')">
+                <ion-infinite-scroll-content></ion-infinite-scroll-content>
+            </ion-infinite-scroll>
+        </div>
+    </div>
+</ion-content>
+<ion-footer>
+    <button ion-button *ngIf="type != 0" full (click)="watchlistupdateapi()"> Save</button>
+</ion-footer>

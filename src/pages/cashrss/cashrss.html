@@ -1,0 +1,57 @@
+<!--
+  Generated template for the CashrssPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Cash Market Data</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <!--<ion-grid>-->
+    <!--<ion-row>-->
+    <!--<ion-col col-12>-->
+    <!--<button style="font-weight: bold;" ion-button full class="content-btn" (click)="webview('https://www.mastertrust.co.in/Market/Gainers.aspx','Top Gainer')">Top Gainer</button>-->
+    <!--<button style="font-weight: bold;" ion-button full class="content-btn" (click)="webview('https://www.mastertrust.co.in/Market/Losers.aspx','Top Loser')">Top Loser</button>-->
+    <!--<button style="font-weight: bold;" ion-button full class="content-btn" (click)="webview('https://www.mastertrust.co.in/Market/AdvDec.aspx','Advance Decline')">Advance Decline</button>-->
+    <!--<button style="font-weight: bold;" ion-button full class="content-btn" (click)="webview('https://www.mastertrust.co.in/Market/FIIActivities.aspx','Fii Investment')">Fii Investment</button>-->
+    <!--<button style="font-weight: bold;" ion-button full class="content-btn" (click)="webview('https://www.mastertrust.co.in/Market/OnlyBuyers.aspx','Only Buyer')">Only Buyer</button>-->
+    <!--<button style="font-weight: bold;" ion-button full class="content-btn" (click)="webview('https://www.mastertrust.co.in/Market/OnlySellers.aspx','Only Seller')">Only Seller</button>-->
+    <!--</ion-col>-->
+    <!--</ion-row>-->
+    <!--</ion-grid>-->
+
+    <table style="width: 100%;height: 100%">
+        <tr>
+            <th (click)="webview('https://www.mastertrust.co.in/Market/Gainers.aspx','Top Gainer')">
+                <ion-label style="color: white">Top Gainer</ion-label>
+            </th>
+            <th (click)="webview('https://www.mastertrust.co.in/Market/Losers.aspx','Top Loser')">
+                <ion-label style="color: white">Top Loser</ion-label>
+            </th>
+        </tr>
+        <tr>
+            <th (click)="webview('https://www.mastertrust.co.in/Market/AdvDec.aspx','Advance Decline')">
+                <ion-label style="color: white">Advance Decline</ion-label>
+            </th>
+            <th (click)="webview('https://www.mastertrust.co.in/Market/FIIActivities.aspx','Fii Investment')">
+                <ion-label style="color: white">Fii Investment</ion-label>
+            </th>
+        </tr>
+        <tr>
+            <th (click)="webview('https://www.mastertrust.co.in/Market/OnlyBuyers.aspx','Only Buyer')">
+                <ion-label style="color: white">Only Buyer</ion-label>
+            </th>
+            <th (click)="webview('https://www.mastertrust.co.in/Market/OnlySellers.aspx','Only Seller')">
+                <ion-label style="color: white">Only Seller</ion-label>
+            </th>
+        </tr>
+    </table>
+</ion-content>

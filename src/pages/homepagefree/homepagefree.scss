@@ -1,0 +1,97 @@
+page-homepagefree {
+
+  ion-col{
+    border: 1px solid #dddddd;
+  }
+  .scroll-content {
+    overflow-y: auto;
+    background-color: #ffffff!important;
+  }
+
+  .title{
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    font-size: 16px;
+    color: black;
+  }
+
+
+  .content-md {
+    color: #000;
+    background-color: #f4f4f4;
+  }
+  .row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    height: fit-content;
+    /* margin: 0px; */
+    /* padding: 0px; */
+  }
+  [col-4] {
+    -webkit-box-flex: 0;
+    -webkit-flex: 0 0 33.33333%;
+    -ms-flex: 0 0 33.33333%;
+    flex: 0 0 33.33333%;
+    width: 33.33333%;
+    max-width: 33.33333%;
+    text-align: center;
+    /* white-space: normal; */
+  }
+  [col-4] {
+    padding: 5px;
+  }
+  .card-md {
+    margin: 0px;
+    border-radius: 2px;
+    width: calc(100% - 20px);
+    font-size: 1.4rem;
+    background: #fff;
+    box-shadow: 1 2px 2px 0 #999, 1 3px 1px -2px #999, 1 1px 5px 1 #999;
+    height: 100px;
+    width: 100%;
+    -webkit-box-shadow: 0px 0px 19px -4px rgba(0, 0, 0, 0.97);
+    -moz-box-shadow: 0px 0px 19px -4px rgba(0, 0, 0, 0.97);
+    box-shadow: 0px 0px 19px -4px rgba(0, 0, 0, 0.97);
+    border-radius: 10px;
+  }
+  ion-card img {
+    display: block;
+    width: 50px;
+    height: 50px;
+    bottom: 10px;
+    position: absolute;
+    right: 10px;
+  }
+  .ion-cards {
+    margin: 6px;
+    //border-radius: 2px;
+    width: calc(100% - 12px);
+    -webkit-box-shadow: -1px 1px 11px 4px rgba(0,0,0,0.26);
+    -moz-box-shadow: -1px 1px 11px 4px rgba(0,0,0,0.26);
+    box-shadow: -1px 1px 11px 4px rgba(0,0,0,0.26);
+  }
+  ion-label {
+    //margin: 0px;
+    display: block;
+    overflow: hidden;
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    //font-size: inherit;
+    text-overflow: ellipsis;
+    white-space: normal;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px;
+    margin: 5px;
+    color: black;
+  }
+
+}

@@ -1,0 +1,53 @@
+<!--
+  Generated template for the FundamentalCallsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Fundamental Calls
+        </ion-title>
+        <span style="float: right; color: white" end><ion-icon name="md-more" style="margin-left: 17px; margin-right: 17px; margin-top: 4px; font-weight: bold; font-size: 23px;" (click)=" presentPopover($event)"></ion-icon></span>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #ededed">
+    <div *ngFor="let item of items">
+
+        <ion-list>
+            <ion-card>
+                <ion-item>
+                    <ion-row>
+                        <ion-col col-4="">
+                            <div style="padding: 0px"><img col-md-6 style="width: 80px; height: 70px; padding: 0px" src="{{item.LOGOIMAGE}}"/>
+                            </div>
+                            <p style="margin-top: 8px;font-size: small;">{{item.DATE}}</p>
+                        </ion-col>
+
+                        <ion-col col-8>
+                                <h4 style="color: #040063;font-size: 1.5rem;">{{item.COMPANYNAME}}
+
+                                    <span style="float: right;">
+                                    <button ion-button small color="secondary" *ngIf="item.TYPE=='Buy'" class="sell-button">{{item.TYPE}}</button>
+
+                                    <button ion-button small color="danger" *ngIf="item.TYPE=='Sell'" class="sell-button">{{item.TYPE}}</button>
+                                    </span>
+                                </h4>
+                                <p style="color: #040063;font-size: small;">Rec Price &ensp;&ensp;&ensp;&ensp;  {{item.RECOMMANDEDPRICE}} </p>
+                                <p style="color: #040063;font-size: small;">Target &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp; {{item.TARGET}}</p>
+                                <p style="color: #040063;font-size: small;">Upside &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;{{item.UPSIDE}}</p>
+                                <p id="Reportlink" style="color: #040063;font-size: small;">Report Link &ensp;&ensp;&ensp; <a href="#" style="color: blue" (click)="openUrl(item.COMPANYNAME, item.REPORTLINK)" *ngIf="item.REPORTLINK!=''">Click Here</a></p>
+
+                        </ion-col>
+
+                    </ion-row>
+                </ion-item>
+            </ion-card>
+        </ion-list>
+
+    </div>
+</ion-content>

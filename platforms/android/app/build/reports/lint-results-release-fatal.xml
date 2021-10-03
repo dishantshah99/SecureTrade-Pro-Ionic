@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<issues format="4" by="lint 3.0.1">
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>173.212.239.224&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="4"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>5.189.165.127&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="5"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>5.189.181.36&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="6"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>5.189.191.174&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="7"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>62.171.138.53&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="8"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>95.111.236.209&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="9"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>207.180.237.2&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="10"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>173.249.53.164&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="11"
+            column="10"/>
+    </issue>
+
+    <issue
+        id="NetworkSecurityConfig"
+        severity="Fatal"
+        message="Missing `includeSubdomains` attribute"
+        category="Correctness"
+        priority="5"
+        summary="Valid Network Security Config File"
+        explanation="Ensures that a `&lt;network-security-config>` file, which is pointed to by an `android:networkSecurityConfig` attribute in the manifest file, is valid"
+        url="https://developer.android.com/preview/features/security-config.html"
+        urls="https://developer.android.com/preview/features/security-config.html"
+        errorLine1="        &lt;domain>192.168.1.3&lt;/domain>"
+        errorLine2="         ~~~~~~">
+        <location
+            file="/home/hitesh/Documents/Project/securetrade pro/SecureTrade_Pro/platforms/android/app/src/main/res/xml/network_security_config.xml"
+            line="12"
+            column="10"/>
+    </issue>
+
+</issues>

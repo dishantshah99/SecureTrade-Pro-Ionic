@@ -1,0 +1,57 @@
+<!--
+  Generated template for the DdlModalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title color="primary">{{title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeModaleod('')">Close</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content scroll=false>
+  <ion-grid>
+    <!-- Row 2 Scrollable list -->
+    <ion-searchbar class="searchbar-ios-primary" (ionInput)="getItemseod($event)"></ion-searchbar>
+    <ion-row>
+      <ion-col>
+        <ion-scroll style="width:100%;height:100%" scrollY="true">
+          <ion-list scroll="true" radio-group>
+            <ion-item *ngFor="let item of items ">
+              <ion-label color="dark">{{ item.EODIMAGENAME }}</ion-label>
+              <ion-radio value="{{ item.EODIMAGENAME }}" (ionSelect)="selectedSymboleod(item)"></ion-radio>
+            </ion-item>
+          </ion-list>
+        </ion-scroll>
+
+      </ion-col>
+    </ion-row>
+
+  </ion-grid>
+</ion-content>
+
+<!--<ion-content>-->
+
+<!--&lt;!&ndash;<ion-list>-->
+<!--<button ion-item *ngFor="let item of items" (click)="selectedSymbol(item)">-->
+<!--{{ item.LIVENAME }} &lt;!&ndash;<ion-icon name="checkmark" style="float: right;" *ngIf="!displayIcon"></ion-icon>&ndash;&gt;-->
+<!--</button>-->
+<!--</ion-list>&ndash;&gt;-->
+
+<!--<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>-->
+<!--<ion-list radio-group>-->
+
+<!--<ion-item *ngFor="let item of items">-->
+<!--<ion-label color="dark">{{ item.LIVENAME }}</ion-label>-->
+<!--<ion-radio value="{{ item.LIVENAME }}" (ionSelect)="selectedSymbol(item)"></ion-radio>-->
+<!--</ion-item>-->
+<!--</ion-list>-->
+
+
+<!--</ion-content>-->

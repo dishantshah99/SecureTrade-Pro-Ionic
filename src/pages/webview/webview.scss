@@ -1,0 +1,17 @@
+page-webview {
+
+  ion-content {
+  }
+
+  .webPage{
+
+    width: 100%!important;
+    height: 100%!important;
+
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+}

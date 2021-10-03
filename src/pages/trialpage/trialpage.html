@@ -1,0 +1,39 @@
+<!--
+  Generated template for the TrialpagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Subscribe Now</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <ion-card>
+    <ion-row>
+      <ion-col>
+        <ion-icon ios="ios-information-circle" md="md-information-circle" item-start style="margin-top: 15px; margin-left: 4px;"></ion-icon>
+      </ion-col>
+      <ion-col col-11>
+        <div text-wrap text-justify>
+          <ion-label [innerHtml]=plantext></ion-label>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+</ion-content>
+<ion-footer style="background: #ed3954">
+  <ion-row>
+    <ion-col col-6 style="background: white">
+      <button ion-button full style="margin-bottom: 0px; width: 100%; background: #ed3954; margin-top: 8px; border-radius: 5px;" (click)="callus()">Call Us</button>
+    </ion-col>
+    <ion-col col-6 style="background: white">
+      <button ion-button full style="margin-bottom: 0px; width: 100%; background: #ed3954; margin-top: 8px; border-radius: 5px; " (click)="subsribe()">Subscribe Plan</button>
+    </ion-col>
+  </ion-row>
+</ion-footer>

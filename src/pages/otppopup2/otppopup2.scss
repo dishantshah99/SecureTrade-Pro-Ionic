@@ -1,0 +1,21 @@
+page-otppopup2 {
+  .content-md {
+    color: #000;
+    background-color: rgba(0, 0, 0, 0.70) !important;
+  }
+  .scroll-content {
+    background: rgba(0, 0, 0, 0.2) !important;
+    /* background: transparent url(../assets/imgs/app_background.png); */
+    padding-bottom: 0 !important;
+  }
+  ion-modal.custom-popup ion-backdrop {
+    visibility: visible !important;
+    z-index:0;
+  }
+  ion-modal.custom-popup .modal-wrapper{
+    top: 20%;
+    width:60%;
+    height:300px;
+    position:absolute;
+  }
+}

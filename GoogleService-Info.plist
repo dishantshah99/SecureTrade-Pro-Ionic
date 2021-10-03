@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>158575416169-19nki80bqfutgbql4mkp0jiipgfvnbtq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.158575416169-19nki80bqfutgbql4mkp0jiipgfvnbtq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBNGesGnnXi6wxSqwC2HoG0kJ3K03L_t1Q</string>
+	<key>GCM_SENDER_ID</key>
+	<string>158575416169</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.securetrade.pro</string>
+	<key>PROJECT_ID</key>
+	<string>trade-pro-41230</string>
+	<key>STORAGE_BUCKET</key>
+	<string>trade-pro-41230.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:158575416169:ios:2f005f9630e814df3b23f8</string>
+	<key>DATABASE_URL</key>
+	<string>https://trade-pro-41230.firebaseio.com</string>
+</dict>
+</plist>

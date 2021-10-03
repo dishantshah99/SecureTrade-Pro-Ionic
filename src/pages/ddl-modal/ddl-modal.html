@@ -1,0 +1,51 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title color="primary">{{title}}</ion-title>
+        <ion-buttons end>
+            <button ion-button (click)="closemodel2()">Close</button>
+        </ion-buttons>
+    </ion-navbar>
+
+</ion-header>
+
+<ion-content scroll=false>
+    <ion-grid>
+        <ion-searchbar class="searchbar-ios-primary" (ionInput)="getItems($event)" (ionFocus)="showhistory()"></ion-searchbar>
+
+        <div *ngIf="show && ITEM.length" style="position: absolute;z-index: 100;top: 0;width: 100%;margin-top: 18%;background-color: white">
+            <ion-label style="margin: 15px;font-size: 16px;font-weight: bold;">Recent Search</ion-label>
+            <ion-list *ngFor="let i of ITEM">
+                <ion-item no-lines no-border (tap)="selectedSymbol(i,this.view.data)">
+                    <div item-start>
+                        <h3>{{i.COMPANY_NAME}}</h3>
+                        <p>{{i.CATEGORY}}</p>
+                    </div>
+                </ion-item>
+            </ion-list>
+        </div>
+
+
+        <ion-list *ngFor="let i of items">
+            <ion-item no-lines no-border (tap)="selectedSymbol(i,this.view.data)">
+                <div item-start>
+                    <h3>{{i.COMPANY_NAME}}</h3>
+                    <p>{{i.CATEGORY}}</p>
+                </div>
+                <ion-checkbox *ngIf="displayIcon == true" item-end [checked]="i.IS_SELECTED == true" style="width: fit-content"></ion-checkbox>
+            </ion-item>
+            <hr no-margin no-padding>
+        </ion-list>
+
+    </ion-grid>
+
+    <ion-fab bottom right edge>
+        <button (click)="clicksync()" ion-fab mini>
+            <ion-spinner icon="bubbles" color="dark" *ngIf="showingspinner"></ion-spinner>
+            <!--<ion-icon ios="ios-sync" md="md-sync" *ngIf="showingicon" style="font-size: 30px;"></ion-icon>-->
+            <img src="assets/imgs/sync.png" style="height: 30px; width: 30px;" *ngIf="showingicon">
+        </button>
+    </ion-fab>
+
+</ion-content>
+

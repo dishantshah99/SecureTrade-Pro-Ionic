@@ -1,0 +1,182 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Profile</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content style="background-color: #ededed">
+
+    <ion-card style="margin: 0;margin-bottom:10px;width: 100%" color="primary">
+        <ion-card-content>
+            <img class="circle-pic" src="{{base64Image ||'assets/imgs/app_background.png'}}"
+                 (click)="presentActionSheet()"/>
+            <h2 style="text-align: center;margin-bottom: 10px;margin-top: 20px;">{{titlename}}</h2>
+
+        </ion-card-content>
+    </ion-card>
+
+    <p style="padding-left: 12px;font-weight: bold;">Profile</p>
+
+    <ion-card>
+        <ion-card-content>
+            <!-- <p style="padding-left: 1px;margin-top: 10px; font-weight: bold">
+                 <ion-item>
+                     <ion-label color="primary">
+
+                         <img src="assets/imgs/ref_code_icon.png" style="margin-left: 15px; width: 20px; height: 20px;"/>
+
+                         &lt;!&ndash;<fa-icon style="margin-left: 5px" name="code" color="primary" size="1x"></fa-icon>&ndash;&gt;
+
+                     </ion-label>
+                     <ion-input placeholder="Ref Code" disabled #refcode [(ngModel)]="refC"></ion-input>
+
+                 </ion-item>
+
+             </p>
+ -->
+            <p style="padding-left: 15px">
+
+                <ion-item>
+
+                    <ion-label color="primary">
+
+                        <img src="assets/imgs/phone.png" style="width: 20px; height: 20px;"/>
+
+                        <!--<fa-icon name="mobile" color="primary" size="1x"></fa-icon>-->
+
+                    </ion-label>
+
+                    <ion-input placeholder="mobile" disabled #mobile [(ngModel)]="mobilE"></ion-input>
+
+                </ion-item>
+
+            </p>
+
+            <p style="padding-left: 12px" >
+
+                <!--<fa-icon name="user" color="gray" size="1x"></fa-icon> <ion-input type="tel" placeholder="UserName"></ion-input>-->
+                <ion-item>
+
+                    <ion-label color="primary">
+
+                        <img src="assets/imgs/user_icon.png" style="width: 20px; height: 20px; margin-left: 2px;"/>
+
+                        <!--<fa-icon name="user-o" color="primary" size="1x"></fa-icon>-->
+                    </ion-label>
+
+                    <ion-input placeholder="User Name" #abxname [(ngModel)]="username"></ion-input>
+
+                    <img src="assets/imgs/edit_icon.png" style="width: 15px; height: 15px;" item-right/>
+
+                    <!--<fa-icon name="edit" color="primary" item-right size="1x"></fa-icon>-->
+                </ion-item>
+
+            </p>
+
+            <p style="padding-left: 12px">
+
+                <!--<fa-icon name="user" color="gray" size="1x"></fa-icon> <ion-input type="tel" placeholder="UserName"></ion-input>-->
+                <ion-item>
+
+                    <ion-label color="primary">
+
+                        <img src="assets/imgs/envelope.png" style="width: 20px; height: 20px; margin-left: 4px;">
+
+                        <!--<fa-icon name="envelope-o" color="primary" size="1x"></fa-icon>-->
+
+                    </ion-label>
+
+                    <ion-input placeholder="Email" #email [(ngModel)]="emaiL"></ion-input>
+
+                    <img src="assets/imgs/edit_icon.png" item-right style="width: 15px; height: 15px;">
+
+
+                    <!--<fa-icon name="edit" color="primary" item-right size="1x"></fa-icon>-->
+
+                </ion-item>
+            </p>
+
+            <p style="padding-left: 12px">
+                <!--<fa-icon name="user" color="gray" size="1x"></fa-icon> <ion-input type="tel" placeholder="UserName"></ion-input>-->
+                <ion-item>
+
+                    <ion-label color="primary">
+
+                        <img src="assets/imgs/city_icon.png" item-right style="width: 20px; height: 20px; margin-left: 4px;">
+
+                        <!--<fa-icon name="building-o" color="primary" size="1x"></fa-icon>-->
+
+                    </ion-label>
+
+                    <ion-input placeholder="City" #city style="margin-left: -7px;" [(ngModel)]="citY"></ion-input>
+
+                    <!--<fa-icon name="edit" color="primary" item-right size="1x"></fa-icon>-->
+
+                    <img src="assets/imgs/edit_icon.png" item-right style="width: 15px; height: 15px;">
+
+                </ion-item>
+
+            </p>
+
+            <p style="padding-left: 12px">
+                <!--<fa-icon name="user" color="gray" size="1x"></fa-icon> <ion-input type="tel" placeholder="UserName"></ion-input>-->
+                <ion-item>
+
+                    <ion-label color="primary">
+
+                        <img src="assets/imgs/refferl.png" item-right style="width: 20px; height: 20px; margin-left: 4px;">
+
+                        <!--<fa-icon name="building-o" color="primary" size="1x"></fa-icon>-->
+
+                    </ion-label>
+
+                    <ion-input placeholder="Reffered code" style="margin-left: -7px;" disabled  #refcno [(ngModel)]="refC"></ion-input>
+
+                    <!--<fa-icon name="edit" color="primary" item-right size="1x"></fa-icon>-->
+
+                    <img src="assets/imgs/share_icon.png" item-right style="width: 15px; height: 15px;" (click)="shareapp()">
+                    <!--<ion-icon name="share-social" style="color: #040063" item-right (click)="shareapp()"></ion-icon>-->
+
+                </ion-item>
+
+            </p>
+
+            <!--  <p style="padding-left: 12px">
+
+                  <ion-row radio-group [(ngModel)]="customertype">
+                      <ion-col>
+                          <ion-item>
+                              <ion-radio [checked]="Trader" value="Trader" (click)="clickTypes('Trader')"></ion-radio>
+                              <ion-label>Trader</ion-label>
+                          </ion-item>
+                      </ion-col>
+                      <ion-col>
+                          <ion-item>
+                              <ion-radio [checked]="Investor" value="Investor" (click)="clickTypes('Investor')"></ion-radio>
+                              <ion-label>Investor</ion-label>
+                          </ion-item>
+                      </ion-col>
+                  </ion-row>
+              </p>-->
+        </ion-card-content>
+    </ion-card>
+
+
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <ion-row col-12 style="padding: 0px;">
+            <ion-col col-6>
+                <button ion-button full color="primary" style="border-radius: 4px " (click)="profileUpdate()">Update Profile</button>
+            </ion-col>
+            <!--outline-->
+            <ion-col col-6>
+                <button ion-button full color="primary" style="border-radius: 4px " (click)="cancel()">Cancel</button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,56 @@
+page-blog-detail {
+  .item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input, .item-md ion-icon[item-start] + .item-inner, .item-md ion-icon[item-start] + .item-input {
+     margin-left: 0px;
+  }
+  ion-card {
+    position: relative;
+    text-align: center;
+  }
+
+  .scroll-content {
+    background-image: none;
+  }
+
+  .heading {
+    margin: 0px;
+    padding: 0px;
+  }
+  .card {
+    margin: 6px;
+    border-radius: 2px;
+    width: calc(100% - 12px);
+    -webkit-box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+    box-shadow: -2px 10px 30px -1px rgba(0, 0, 0, 0.3);
+  }
+  .card-content {
+    padding: 5px 9px;
+    font-size: 1.4rem;
+    line-height: 1.5;
+    text-align: start;
+
+  }
+  .title {
+    margin: 0px;
+    color: #434242;
+
+  }
+
+  .card-subtitle {
+    font-size: 1.0em;
+    position: absolute;
+    top: 52%;
+    width: 100%;
+    color: #fff;
+  }
+  .fa-icons {
+    font-size: 15px;
+    margin: -2px -2px 0px 0;
+    color: #ed3954;
+  }
+  .item {
+    border-style: none;
+    border-bottom: 1px solid #bdb4b4;
+
+  }
+}
